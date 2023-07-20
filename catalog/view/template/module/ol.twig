@@ -1,0 +1,17 @@
+<style>
+    #map{{ module_id }}{
+        width:  {{ width }};
+        height: {{ height }};
+    }
+</style>
+<div class="row">
+    <div class="col-sm-12">
+        <div id="map{{ module_id }}" class="map" tabindex="0"></div>
+        <div id="popup"></div>
+    </div>
+</div>
+<script src="extension/ol/catalog/view/javascript/main.js"></script>
+<script>
+    map.show("map{{ module_id }}", "{{ geocode }}", {{ zoom }});
+</script>
+<link href="extension/ol/catalog/view/javascript/main.css" type="text/css" rel="stylesheet" media="screen"/>
