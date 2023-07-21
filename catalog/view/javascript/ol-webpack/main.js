@@ -1,7 +1,7 @@
 import './style.css';
 import {Map, View} from 'ol';
 import TileLayer from 'ol/layer/Tile';
-import XYZ from 'ol/source/XYZ';
+import OSM from 'ol/source/OSM.js';
 import {fromLonLat} from 'ol/proj';
 
 export async function show(map_id, geocode, zoom = 0) {
@@ -20,9 +20,7 @@ export async function show(map_id, geocode, zoom = 0) {
         target: map_id,
         layers: [
             new TileLayer({
-                source: new XYZ({
-                    url: 'https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-                })
+                source: new OSM(),
             }),
             marker
         ],
