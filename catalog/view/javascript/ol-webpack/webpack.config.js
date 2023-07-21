@@ -13,7 +13,7 @@ module.exports = {
         },
     },
     output: {
-        path: path.resolve(__dirname, '../javascript/'),
+        path: path.resolve(__dirname, '../'),
         library: "map"
     },
     plugins: [new MiniCssExtractPlugin()],
