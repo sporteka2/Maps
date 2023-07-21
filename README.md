@@ -6,7 +6,8 @@ Compatibility
 
 
 
-https://github.com/sporteka2/OpenLayers/assets/138197434/a0b83cde-4bc3-4043-8426-b5631f244397
+
+https://github.com/sporteka2/OpenLayers/assets/138197434/189475f4-2f9e-45de-a6ae-06591aa11a8f
 
 
 
