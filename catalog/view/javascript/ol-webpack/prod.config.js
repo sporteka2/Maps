@@ -1,17 +1,12 @@
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 var path = require('path');
 
 module.exports = {
-    mode: 'development',
     devtool: 'source-map',
-    devServer: {
-        devMiddleware: {
-            writeToDisk: true
-        }
-    },
     entry: {
         main: {
             import: './main.js',
@@ -21,7 +16,10 @@ module.exports = {
         path: path.resolve(__dirname, '../ol/'),
         library: "map"
     },
-    plugins: [new MiniCssExtractPlugin()],
+    plugins: [
+        new MiniCssExtractPlugin(),
+        new CleanWebpackPlugin(),
+    ],
     module: {
         rules: [
             {

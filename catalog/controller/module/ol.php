@@ -6,6 +6,8 @@ class Ol extends \Opencart\System\Engine\Controller {
 
     public function index(array $setting): string {
         $this->load->language('extension/ol/module/ol');
+        $data['zoomInTipLabel'] = $this->language->get('zoomInTipLabel');
+        $data['zoomOutTipLabel'] = $this->language->get('zoomOutTipLabel');
 
         $data['module_id'] = $setting['module_id'];
         $data['geocode'] = $setting['geocode'];
@@ -18,15 +20,14 @@ class Ol extends \Opencart\System\Engine\Controller {
 
     public function openlayers(&$route, &$data) {
         $modules = $this->getModulesByCode("ol.ol");
-        
+
         $t = 0;
-        
         foreach ($modules as $module) {
             $setting = json_decode($module['setting'], true);
 
             if ($setting && $setting['status']) {
                 $t++;
-                $d['module_id'] = $setting['module_id'].'t'.(string)$t;
+                $d['module_id'] = $setting['module_id'] . 't' . (string) $t;
                 $d['geocode'] = $setting['geocode'];
                 $d['zoom'] = $setting['zoom'];
                 $d['width'] = $setting['width'];

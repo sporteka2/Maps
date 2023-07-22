@@ -1,10 +1,15 @@
 import './style.css';
 import {Map, View} from 'ol';
 import TileLayer from 'ol/layer/Tile';
+import XYZ from 'ol/source/XYZ';
 import OSM from 'ol/source/OSM.js';
 import {fromLonLat} from 'ol/proj';
+import {defaults} from 'ol/control/defaults';
+import Zoom from 'ol/control/Zoom.js';
 
-export async function show(map_id, geocode, zoom = 0) {
+export async function show(map_id, geocode, zoom = 0,
+    zoomInTipLabel,
+    zoomOutTipLabel) {
 
     const re = /\s*,\s*/;
     const LatLon = geocode.split(re);
@@ -17,6 +22,14 @@ export async function show(map_id, geocode, zoom = 0) {
     const marker = getMarker(point);
 
     const map0 = new Map({
+        controls: defaults({
+            zoom: false
+        }).extend([
+            new Zoom({
+                zoomInTipLabel: zoomInTipLabel,
+                zoomOutTipLabel: zoomOutTipLabel
+            })
+        ]),
         target: map_id,
         layers: [
             new TileLayer({

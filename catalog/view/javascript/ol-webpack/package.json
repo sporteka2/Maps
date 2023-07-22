@@ -1,18 +1,21 @@
 {
-  "name": "ol-webpack",
-  "version": "1.0.0",
-  "description": "Example using OpenLayers with Webpack",
-  "scripts": {
-    "build": "webpack --config webpack.config.js"
-  },
-  "devDependencies": {
-    "css-loader": "^6.8.1",
-    "css-minimizer-webpack-plugin": "^5.0.1",
-    "mini-css-extract-plugin": "^2.7.6",
-    "webpack": "^5.75.0",
-    "webpack-cli": "^5.0.1"
-  },
-  "dependencies": {
-    "ol": "latest"
-  }
+    "name": "ol-webpack",
+    "version": "1.0.0",
+    "description": "Example using OpenLayers with Webpack",
+    "scripts": {
+        "build": "webpack --config prod.config.js",
+        "start": "webpack-dev-server --config webpack.config.js"
+    },
+    "devDependencies": {
+        "clean-webpack-plugin": "^4.0.0",
+        "css-loader": "^6.8.1",
+        "css-minimizer-webpack-plugin": "^5.0.1",
+        "mini-css-extract-plugin": "^2.7.6",
+        "webpack": "^5.75.0",
+        "webpack-cli": "^5.0.1",
+        "webpack-dev-server": "^4.15.1"
+    },
+    "dependencies": {
+        "ol": "latest"
+    }
 }
