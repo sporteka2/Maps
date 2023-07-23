@@ -7,9 +7,6 @@ class Maps extends \Opencart\System\Engine\Controller {
     private $path = 'extension/maps/module/maps';
 
     public function index(array $setting): string {
-        $this->load->language($this->path);
-        $data['zoomInTipLabel'] = $this->language->get('zoomInTipLabel');
-        $data['zoomOutTipLabel'] = $this->language->get('zoomOutTipLabel');
 
         $data['module_id'] = $setting['module_id'];
         $data['geocode'] = $setting['geocode'];
@@ -23,6 +20,7 @@ class Maps extends \Opencart\System\Engine\Controller {
     public function openlayers(&$route, &$data) {
         $modules = $this->getModulesByCode("maps.maps");
 
+        $d = $this->load->language($this->path);
         $t = 0;
         foreach ($modules as $module) {
             $setting = json_decode($module['setting'], true);
