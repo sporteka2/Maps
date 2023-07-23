@@ -18,7 +18,8 @@ class Maps extends \Opencart\System\Engine\Controller {
     }
 
     public function openlayers(&$route, &$data) {
-        $modules = $this->getModulesByCode("maps.maps");
+        $this->load->model($this->path);
+        $modules = $this->model_extension_maps_module_maps->getModulesByCode("maps.maps");
 
         $d = $this->load->language($this->path);
         $t = 0;
@@ -38,11 +39,6 @@ class Maps extends \Opencart\System\Engine\Controller {
         }
     }
 
-    function getModulesByCode(string $code): array {
-        $query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "module` WHERE `code` = '" . $this->db->escape($code) . "' ORDER BY `name`");
-
-        return $query->rows;
-    }
 
     function view(string $route, array $data = [], string $code = ''): string {
         // Sanitize the call
