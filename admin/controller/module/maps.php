@@ -1,12 +1,13 @@
 <?php
 
-namespace Opencart\Admin\Controller\Extension\Ol\Module;
+namespace Opencart\Admin\Controller\Extension\Maps\Module;
+
 use \Opencart\System\Helper AS Helper;
 
-class Ol extends \Opencart\System\Engine\Controller {
+class Maps extends \Opencart\System\Engine\Controller {
 
     private $call_separator = VERSION < '4.0.2.0' ? '|' : '.';
-    private $path = 'extension/ol/module/ol';
+    private $path = 'extension/maps/module/maps';
 
     public function index(): void {
         $this->load->language($this->path);
@@ -137,7 +138,7 @@ class Ol extends \Opencart\System\Engine\Controller {
             $this->load->model('setting/module');
 
             if (!$this->request->post['module_id']) {
-                $json['module_id'] = $this->model_setting_module->addModule('ol.ol', $this->request->post);
+                $json['module_id'] = $this->model_setting_module->addModule('maps.maps', $this->request->post);
             } else {
                 $this->model_setting_module->editModule($this->request->post['module_id'], $this->request->post);
             }
@@ -153,7 +154,7 @@ class Ol extends \Opencart\System\Engine\Controller {
         $this->load->model('setting/event');
 
         $this->model_setting_event->addEvent([
-            'code' => 'ol',
+            'code' => 'maps',
             'description' => '',
             'trigger' => 'catalog/view/*/*/before',
             'action' => $this->path . $this->call_separator . 'openlayers',
@@ -164,6 +165,6 @@ class Ol extends \Opencart\System\Engine\Controller {
     public function uninstall() {
         $this->load->model('setting/event');
 
-        $this->model_setting_event->deleteEventByCode('ol');
+        $this->model_setting_event->deleteEventByCode('maps');
     }
 }

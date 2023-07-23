@@ -16,7 +16,7 @@ export default function getMarker(point) {
             anchor: [0.5, img_height],
             anchorXUnits: 'fraction',
             anchorYUnits: 'pixels',
-            src: 'extension/ol/catalog/view/javascript/marker.svg'
+            src: 'extension/maps/catalog/view/javascript/marker.svg'
         })
     });
 

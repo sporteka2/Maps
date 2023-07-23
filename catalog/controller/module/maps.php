@@ -1,11 +1,13 @@
 <?php
 
-namespace Opencart\Catalog\Controller\Extension\Ol\Module;
+namespace Opencart\Catalog\Controller\Extension\Maps\Module;
 
-class Ol extends \Opencart\System\Engine\Controller {
+class Maps extends \Opencart\System\Engine\Controller {
+
+    private $path = 'extension/maps/module/maps';
 
     public function index(array $setting): string {
-        $this->load->language('extension/ol/module/ol');
+        $this->load->language($this->path);
         $data['zoomInTipLabel'] = $this->language->get('zoomInTipLabel');
         $data['zoomOutTipLabel'] = $this->language->get('zoomOutTipLabel');
 
@@ -15,11 +17,11 @@ class Ol extends \Opencart\System\Engine\Controller {
         $data['width'] = $setting['width'];
         $data['height'] = $setting['height'];
 
-        return $this->load->view('extension/ol/module/ol', $data);
+        return $this->load->view($this->path, $data);
     }
 
     public function openlayers(&$route, &$data) {
-        $modules = $this->getModulesByCode("ol.ol");
+        $modules = $this->getModulesByCode("maps.maps");
 
         $t = 0;
         foreach ($modules as $module) {
@@ -33,7 +35,7 @@ class Ol extends \Opencart\System\Engine\Controller {
                 $d['width'] = $setting['width'];
                 $d['height'] = $setting['height'];
 
-                $data[$setting['tag']] = $this->view('extension/ol/module/ol', $d);
+                $data[$setting['tag']] = $this->view($this->path, $d);
             }
         }
     }
