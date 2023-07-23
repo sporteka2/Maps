@@ -1,4 +1,4 @@
-# OpenLayers
+# Maps
 OpenCart Extension
 
 Compatibility
