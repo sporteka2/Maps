@@ -13,7 +13,10 @@
 <script src="extension/maps/catalog/view/javascript/ol/main.js"></script>
 <script>
     map.show("map{{ module_id }}", "{{ geocode }}", {{ zoom }},
+    "{{ zoomControl }}",
     "{{ zoomInTipLabel }}",
-    "{{ zoomOutTipLabel }}");
+    "{{ zoomOutTipLabel }}",
+    "{{ fullScreenControl }}",
+    "{{ fullScreenTipLabel }}");
 </script>
 <link href="extension/maps/catalog/view/javascript/ol/main.css" type="text/css" rel="stylesheet" media="screen"/>

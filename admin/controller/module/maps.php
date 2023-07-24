@@ -82,16 +82,28 @@ class Maps extends \Opencart\System\Engine\Controller {
             $data['height'] = '200px';
         }
 
-        if (isset($module_info['status'])) {
-            $data['status'] = $module_info['status'];
-        } else {
-            $data['status'] = '';
-        }
-
         if (isset($module_info['tag'])) {
             $data['tag'] = $module_info['tag'];
         } else {
             $data['tag'] = '';
+        }
+
+        if (isset($module_info['zoomControl'])) {
+            $data['zoomControl'] = $module_info['zoomControl'];
+        } else {
+            $data['zoomControl'] = '1';
+        }
+
+        if (isset($module_info['fullScreenControl'])) {
+            $data['fullScreenControl'] = $module_info['fullScreenControl'];
+        } else {
+            $data['fullScreenControl'] = '0';
+        }
+
+        if (isset($module_info['status'])) {
+            $data['status'] = $module_info['status'];
+        } else {
+            $data['status'] = '';
         }
 
         if (isset($this->request->get['module_id'])) {
@@ -157,7 +169,7 @@ class Maps extends \Opencart\System\Engine\Controller {
             'code' => 'maps',
             'description' => '',
             'trigger' => 'catalog/view/*/*/before',
-            'action' => $this->path . $this->call_separator . 'openlayers',
+            'action' => $this->path . $this->call_separator . 'tag',
             'status' => 1,
             'sort_order' => 1]);
     }

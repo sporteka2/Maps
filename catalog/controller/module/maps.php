@@ -8,16 +8,10 @@ class Maps extends \Opencart\System\Engine\Controller {
 
     public function index(array $setting): string {
 
-        $data['module_id'] = $setting['module_id'];
-        $data['geocode'] = $setting['geocode'];
-        $data['zoom'] = $setting['zoom'];
-        $data['width'] = $setting['width'];
-        $data['height'] = $setting['height'];
-
-        return $this->load->view($this->path, $data);
+        return $this->load->view($this->path, $setting);
     }
 
-    public function openlayers(&$route, &$data) {
+    public function tag(&$route, &$data) {
         $this->load->model($this->path);
         $modules = $this->model_extension_maps_module_maps->getModulesByCode("maps.maps");
 
@@ -27,12 +21,10 @@ class Maps extends \Opencart\System\Engine\Controller {
             $setting = json_decode($module['setting'], true);
 
             if ($setting && $setting['status']) {
+                $d = array_merge($d, $setting);
+                
                 $t++;
                 $d['module_id'] = $setting['module_id'] . 't' . (string) $t;
-                $d['geocode'] = $setting['geocode'];
-                $d['zoom'] = $setting['zoom'];
-                $d['width'] = $setting['width'];
-                $d['height'] = $setting['height'];
 
                 $data[$setting['tag']] = $this->view($this->path, $d);
             }

@@ -4,12 +4,14 @@ import TileLayer from 'ol/layer/Tile';
 import XYZ from 'ol/source/XYZ';
 import OSM from 'ol/source/OSM.js';
 import {fromLonLat} from 'ol/proj';
-import {defaults} from 'ol/control/defaults';
-import Zoom from 'ol/control/Zoom.js';
+import {defaults, Zoom, FullScreen} from 'ol/control.js';
 
 export async function show(map_id, geocode, zoom = 0,
-    zoomInTipLabel,
-    zoomOutTipLabel) {
+        zoomControl,
+        zoomInTipLabel,
+        zoomOutTipLabel,
+        fullScreenControl,
+        fullScreenTipLabel) {
 
     const re = /\s*,\s*/;
     const LatLon = geocode.split(re);
@@ -21,15 +23,10 @@ export async function show(map_id, geocode, zoom = 0,
     const {default: getMarker} = await import('./marker.js');
     const marker = getMarker(point);
 
-    const map0 = new Map({
+    const map = new Map({
         controls: defaults({
             zoom: false
-        }).extend([
-            new Zoom({
-                zoomInTipLabel: zoomInTipLabel,
-                zoomOutTipLabel: zoomOutTipLabel
-            })
-        ]),
+        }),
         target: map_id,
         layers: [
             new TileLayer({
@@ -42,4 +39,18 @@ export async function show(map_id, geocode, zoom = 0,
             zoom: zoom
         })
     });
+
+    if (zoomControl === "1")
+        map.addControl(
+                new Zoom({
+                    zoomInTipLabel: zoomInTipLabel,
+                    zoomOutTipLabel: zoomOutTipLabel
+                }));
+
+    if (fullScreenControl === "1")
+        map.addControl(
+                new FullScreen({
+                    tipLabel: fullScreenTipLabel
+                }));
+
 }
