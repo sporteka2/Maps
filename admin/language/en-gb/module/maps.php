@@ -8,6 +8,9 @@ $_['text_extension'] = 'Extensions';
 $_['text_success'] = 'Success: You have modified Maps module!';
 $_['text_edit'] = 'Edit Maps Module';
 
+// Tab
+$_['tab_controls'] = 'Controls';
+
 // Entry
 $_['entry_name'] = 'Module Name';
 $_['entry_geocode'] = 'Geocode';
