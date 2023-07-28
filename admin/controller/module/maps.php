@@ -82,6 +82,23 @@ class Maps extends \Opencart\System\Engine\Controller {
             $data['height'] = '200px';
         }
 
+        
+        if (isset($module_info['config_marker'])) {
+            $data['config_marker'] = $module_info['config_marker'];
+        } else {
+            $data['config_marker'] = '';
+        }
+        
+        $this->load->model('tool/image');
+
+        $data['placeholder'] = HTTP_CATALOG . 'extension/maps/catalog/view/javascript/marker.svg';
+
+        if (is_file(DIR_IMAGE . html_entity_decode($data['config_marker'], ENT_QUOTES, 'UTF-8'))) {
+            $data['marker'] = HTTP_CATALOG . 'image/' . html_entity_decode($data['config_marker'], ENT_QUOTES, 'UTF-8');
+        } else {
+            $data['marker'] = $data['placeholder'];
+        }
+        
         if (isset($module_info['tag'])) {
             $data['tag'] = $module_info['tag'];
         } else {
@@ -92,6 +109,12 @@ class Maps extends \Opencart\System\Engine\Controller {
             $data['zoomControl'] = $module_info['zoomControl'];
         } else {
             $data['zoomControl'] = '1';
+        }
+
+        if (isset($module_info['attributionControl'])) {
+            $data['attributionControl'] = $module_info['attributionControl'];
+        } else {
+            $data['attributionControl'] = '1';
         }
 
         if (isset($module_info['fullScreenControl'])) {
@@ -172,11 +195,29 @@ class Maps extends \Opencart\System\Engine\Controller {
             'action' => $this->path . $this->call_separator . 'tag',
             'status' => 1,
             'sort_order' => 1]);
+        $this->model_setting_event->addEvent([
+            'code' => 'maps',
+            'description' => '',
+            'trigger' => 'admin/view/common/filemanager/after',
+            'action' => $this->path . $this->call_separator . 'fm',
+            'status' => 1,
+            'sort_order' => 1]);
     }
 
     public function uninstall() {
         $this->load->model('setting/event');
 
         $this->model_setting_event->deleteEventByCode('maps');
+    }
+
+    public function fm(&$route, &$data, &$output) {
+        $hook = "$(this).find('img').attr('src')";
+        $insert = "(new URLSearchParams(document.location.search))."
+                . "get('route') == 'extension/maps/module/maps' ? "
+                . $hook
+                . ".replace('cache/','')"
+                . ".replace('-136x136','') : "
+                . $hook;
+        $output = str_replace($hook, $insert, $output);
     }
 }

@@ -4,14 +4,17 @@ import TileLayer from 'ol/layer/Tile';
 import XYZ from 'ol/source/XYZ';
 import OSM from 'ol/source/OSM.js';
 import {fromLonLat} from 'ol/proj';
-import {defaults, Zoom, FullScreen} from 'ol/control.js';
 
-export async function show(map_id, geocode, zoom = 0,
-        zoomControl,
-        zoomInTipLabel,
-        zoomOutTipLabel,
-        fullScreenControl,
-        fullScreenTipLabel) {
+import {defaults} from 'ol/control/defaults';
+import Zoom from 'ol/control/Zoom.js';
+import Attribution from 'ol/control/Attribution.js';
+import FullScreen from 'ol/control/FullScreen.js';
+
+export async function show(
+        map_id, geocode, markerImage, zoom = 0,
+        zoomControl, zoomOptions,
+        attributionControl,
+        fullScreenControl, fullScreenOptions) {
 
     const re = /\s*,\s*/;
     const LatLon = geocode.split(re);
@@ -21,11 +24,12 @@ export async function show(map_id, geocode, zoom = 0,
     const point = fromLonLat([lon, lat]);
 
     const {default: getMarker} = await import('./marker.js');
-    const marker = getMarker(point);
+    const marker = getMarker(point, markerImage, await getImageHeight(markerImage));
 
     const map = new Map({
         controls: defaults({
-            zoom: false
+           zoom: false,
+           attribution: false
         }),
         target: map_id,
         layers: [
@@ -42,15 +46,26 @@ export async function show(map_id, geocode, zoom = 0,
 
     if (zoomControl === "1")
         map.addControl(
-                new Zoom({
-                    zoomInTipLabel: zoomInTipLabel,
-                    zoomOutTipLabel: zoomOutTipLabel
-                }));
+                new Zoom(zoomOptions));
+
+    if (attributionControl === "1")
+        map.addControl(
+                new Attribution());
 
     if (fullScreenControl === "1")
         map.addControl(
-                new FullScreen({
-                    tipLabel: fullScreenTipLabel
-                }));
+                new FullScreen(fullScreenOptions));
 
 }
+
+
+import { getImageSize } from 'react-image-size';
+async function getImageHeight(img) {
+    try {
+        const dimensions = await getImageSize(img);
+        return dimensions['height'];
+    } catch (error) {
+        console.error(error);
+    }
+}
+

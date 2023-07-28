@@ -8,6 +8,8 @@ class Maps extends \Opencart\System\Engine\Controller {
 
     public function index(array $setting): string {
 
+        $this->sm($setting['config_marker']);
+                
         return $this->load->view($this->path, $setting);
     }
 
@@ -21,8 +23,11 @@ class Maps extends \Opencart\System\Engine\Controller {
             $setting = json_decode($module['setting'], true);
 
             if ($setting && $setting['status']) {
-                $d = array_merge($d, $setting);
                 
+                $this->sm($setting['config_marker']);
+                
+                $d = array_merge($d, $setting);
+
                 $t++;
                 $d['module_id'] = $setting['module_id'] . 't' . (string) $t;
 
@@ -31,6 +36,14 @@ class Maps extends \Opencart\System\Engine\Controller {
         }
     }
 
+    
+    function sm(&$m) {
+        if ($m == "") {
+            $m = 'extension/maps/catalog/view/javascript/marker.svg';
+        } else {
+            $m = 'image/' . $m;
+        }
+    }
 
     function view(string $route, array $data = [], string $code = ''): string {
         // Sanitize the call

@@ -4,7 +4,7 @@
     "description": "Example using OpenLayers with Webpack",
     "scripts": {
         "build": "webpack --config prod.config.js",
-        "start": "webpack-dev-server --config webpack.config.js"
+        "start": "node node_modules/webpack-dev-server/bin/webpack-dev-server.js --config webpack.config.js"
     },
     "devDependencies": {
         "clean-webpack-plugin": "^4.0.0",
@@ -16,6 +16,7 @@
         "webpack-dev-server": "^4.15.1"
     },
     "dependencies": {
-        "ol": "latest"
+        "ol": "latest",
+        "react-image-size": "^2.0.2"
     }
 }

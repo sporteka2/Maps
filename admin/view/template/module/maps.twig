@@ -20,6 +20,7 @@
                 <form id="form-module" action="{{ save }}" method="post" data-oc-toggle="ajax">
                     <ul class="nav nav-tabs">
                         <li class="nav-item"><a href="#tab-general" data-bs-toggle="tab" class="nav-link active">{{ tab_general }}</a></li>
+                        <li class="nav-item"><a href="#tab-size" data-bs-toggle="tab" class="nav-link">{{ tab_size }}</a></li>
                         <li class="nav-item"><a href="#tab-controls" data-bs-toggle="tab" class="nav-link">{{ tab_controls }}</a></li>
                     </ul>
                     <div class="tab-content">
@@ -44,20 +45,18 @@
                                     <input type="number" min="0" name="zoom" value="{{ zoom }}" placeholder="{{ entry_zoom }}" id="input-zoom" class="form-control"/>
                                 </div>
                             </div>
-                            <div class="row mb-3 required">
-                                <label for="input-width" class="col-sm-2 col-form-label">{{ entry_width }}</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="width" value="{{ width }}" placeholder="{{ entry_width }}" id="input-width" class="form-control"/>
-                                    <div id="error-width" class="invalid-feedback"></div>
-                                </div>
-                            </div>
-                            <div class="row mb-3 required">
-                                <label for="input-height" class="col-sm-2 col-form-label">{{ entry_height }}</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="height" value="{{ height }}" placeholder="{{ entry_height }}" id="input-height" class="form-control"/>
-                                    <div id="error-height" class="invalid-feedback"></div>
-                                </div>
-                            </div>
+              <div class="row mb-3">
+                <label for="input-marker" class="col-sm-2 col-form-label">{{ entry_marker }}</label>
+                <div class="col-sm-10">
+                  <div class="card image" style="width: max-content;display: block;text-align: center;padding: var(--bs-card-spacer-y) var(--bs-card-spacer-y) 0;">
+                    <img src="{{ marker }}" style="width: unset;" alt="" title="" id="thumb-marker" data-oc-placeholder="{{ placeholder }}" class="card-img-top"/> <input type="hidden" name="config_marker" value="{{ config_marker }}" id="input-marker"/>
+                    <div class="card-body" style="padding: var(--bs-card-spacer-y) 0;">
+                      <button type="button" data-oc-toggle="image" data-oc-target="#input-marker" data-oc-thumb="#thumb-marker" class="btn btn-primary btn-sm btn-block"><i class="fa-solid fa-pencil"></i> {{ button_edit }}</button>
+                      <button type="button" data-oc-toggle="clear" data-oc-target="#input-marker" data-oc-thumb="#thumb-marker" class="btn btn-warning btn-sm btn-block"><i class="fa-solid fa-recycle"></i> {{ button_reset }}</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
                             <div class="row mb-3">
                                 <label for="input-tag" class="col-sm-2 col-form-label">{{ entry_tag }}</label>
                                 <div class="col-sm-10">
@@ -75,6 +74,22 @@
                             </div>
                             <input type="hidden" name="module_id" value="{{ module_id }}" id="input-module-id"/>
                         </div>
+                        <div id="tab-size" class="tab-pane">
+                            <div class="row mb-3 required">
+                                <label for="input-width" class="col-sm-2 col-form-label">{{ entry_width }}</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="width" value="{{ width }}" placeholder="{{ entry_width }}" id="input-width" class="form-control"/>
+                                    <div id="error-width" class="invalid-feedback"></div>
+                                </div>
+                            </div>
+                            <div class="row mb-3 required">
+                                <label for="input-height" class="col-sm-2 col-form-label">{{ entry_height }}</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="height" value="{{ height }}" placeholder="{{ entry_height }}" id="input-height" class="form-control"/>
+                                    <div id="error-height" class="invalid-feedback"></div>
+                                </div>
+                            </div>
+                        </div>
                         <div id="tab-controls" class="tab-pane">
                             <div class="row mb-3">
                                 <label for="input-zoomControl" class="col-sm-2 col-form-label">{{ entry_zoomControl }}</label>
@@ -84,6 +99,16 @@
                                         <input type="checkbox" name="zoomControl" value="1" id="input-zoomControl" class="form-check-input"{% if zoomControl %} checked{% endif %}/>
                                     </div>
                                     <div class="form-text">{{ help_zoomControl }}</div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="input-attributionControl" class="col-sm-2 col-form-label">{{ entry_attributionControl }}</label>
+                                <div class="col-sm-10">
+                                    <div class="form-check form-switch form-switch-lg">
+                                        <input type="hidden" name="attributionControl" value="0"/>
+                                        <input type="checkbox" name="attributionControl" value="1" id="input-attributionControl" class="form-check-input"{% if attributionControl %} checked{% endif %}/>
+                                    </div>
+                                    <div class="form-text">{{ help_attributionControl }}</div>
                                 </div>
                             </div>
                             <div class="row mb-3">
