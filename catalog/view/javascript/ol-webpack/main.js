@@ -10,11 +10,16 @@ import Zoom from 'ol/control/Zoom.js';
 import Attribution from 'ol/control/Attribution.js';
 import FullScreen from 'ol/control/FullScreen.js';
 
+import {defaults as defaultsInteraction} from 'ol/interaction/defaults';
+import DoubleClickZoom from 'ol/interaction/DoubleClickZoom.js';
+
+
 export async function show(
         map_id, geocode, markerImage, zoom = 0,
         zoomControl, zoomOptions,
         attributionControl,
-        fullScreenControl, fullScreenOptions) {
+        fullScreenControl, fullScreenOptions,
+        doubleClickZoom) {
 
     const re = /\s*,\s*/;
     const LatLon = geocode.split(re);
@@ -28,8 +33,11 @@ export async function show(
 
     const map = new Map({
         controls: defaults({
-           zoom: false,
-           attribution: false
+            zoom: false,
+            attribution: false
+        }),
+        interactions: defaultsInteraction({
+            doubleClickZoom: false
         }),
         target: map_id,
         layers: [
@@ -55,6 +63,11 @@ export async function show(
     if (fullScreenControl === "1")
         map.addControl(
                 new FullScreen(fullScreenOptions));
+
+
+    if (doubleClickZoom === "1")
+        map.addInteraction(
+                new DoubleClickZoom());
 
 }
 

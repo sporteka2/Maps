@@ -22,6 +22,7 @@
                         <li class="nav-item"><a href="#tab-general" data-bs-toggle="tab" class="nav-link active">{{ tab_general }}</a></li>
                         <li class="nav-item"><a href="#tab-size" data-bs-toggle="tab" class="nav-link">{{ tab_size }}</a></li>
                         <li class="nav-item"><a href="#tab-controls" data-bs-toggle="tab" class="nav-link">{{ tab_controls }}</a></li>
+                        <li class="nav-item"><a href="#tab-interactions" data-bs-toggle="tab" class="nav-link">{{ tab_interactions }}</a></li>
                     </ul>
                     <div class="tab-content">
                         <div id="tab-general" class="tab-pane active">
@@ -119,6 +120,18 @@
                                         <input type="checkbox" name="fullScreenControl" value="1" id="input-fullScreenControl" class="form-check-input"{% if fullScreenControl %} checked{% endif %}/>
                                     </div>
                                     <div class="form-text">{{ help_fullScreenControl }}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tab-interactions" class="tab-pane">
+                            <div class="row mb-3">
+                                <label for="input-doubleClickZoom" class="col-sm-2 col-form-label">{{ entry_doubleClickZoom }}</label>
+                                <div class="col-sm-10">
+                                    <div class="form-check form-switch form-switch-lg">
+                                        <input type="hidden" name="doubleClickZoom" value="0"/>
+                                        <input type="checkbox" name="doubleClickZoom" value="1" id="input-doubleClickZoom" class="form-check-input"{% if doubleClickZoom %} checked{% endif %}/>
+                                    </div>
+                                    <div class="form-text">{{ help_doubleClickZoom }}</div>
                                 </div>
                             </div>
                         </div>

@@ -123,6 +123,14 @@ class Maps extends \Opencart\System\Engine\Controller {
             $data['fullScreenControl'] = '0';
         }
 
+        
+        if (isset($module_info['doubleClickZoom'])) {
+            $data['doubleClickZoom'] = $module_info['doubleClickZoom'];
+        } else {
+            $data['doubleClickZoom'] = '1';
+        }
+
+        
         if (isset($module_info['status'])) {
             $data['status'] = $module_info['status'];
         } else {

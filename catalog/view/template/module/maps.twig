@@ -13,17 +13,18 @@
 <script src="extension/maps/catalog/view/javascript/ol/main.js"></script>
 <script>
     map.show("map{{ module_id }}", "{{ geocode }}", "{{ config_marker }}",
-            {{ zoom }},
-            "{{ zoomControl }}",
-            {
-                zoomInTipLabel: "{{ zoomInTipLabel }}",
-                zoomOutTipLabel: "{{ zoomOutTipLabel }}"
-            },
-            "{{ attributionControl }}",        
-            "{{ fullScreenControl }}",
-            {
-                tipLabel: "{{ fullScreenTipLabel }}"
-            }
-    );
+    {{ zoom }},
+                "{{ zoomControl }}",
+                {
+                    zoomInTipLabel: "{{ zoomInTipLabel }}",
+                    zoomOutTipLabel: "{{ zoomOutTipLabel }}"
+                },
+                "{{ attributionControl }}",
+                "{{ fullScreenControl }}",
+                {
+                    tipLabel: "{{ fullScreenTipLabel }}"
+                },
+                "{{ doubleClickZoom }}"
+                );
 </script>
 <link href="extension/maps/catalog/view/javascript/ol/main.css" type="text/css" rel="stylesheet" media="screen"/>
