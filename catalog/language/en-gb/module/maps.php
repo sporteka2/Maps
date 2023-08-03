@@ -1,6 +1,6 @@
 <?php
 // Label
-$_['zoomInTipLabel']        = 'Zoom in';
-$_['zoomOutTipLabel']       = 'Zoom out';
-
-$_['fullScreenTipLabel']    = 'Toggle full-screen';
+$_['zoomInControlTipLabel']        = 'Zoom in';
+$_['zoomOutControlTipLabel']       = 'Zoom out';
+$_['fullScreenControlTipLabel']    = 'Toggle full-screen';
+$_['rotateControlTipLabel']        = 'Reset rotation';

@@ -113,6 +113,16 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
+                                <label for="input-rotateControl" class="col-sm-2 col-form-label">{{ entry_rotateControl }}</label>
+                                <div class="col-sm-10">   
+                                    <div class="form-check form-switch form-switch-lg">
+                                        <input type="hidden" name="rotateControl" value="0"/>
+                                        <input type="checkbox" name="rotateControl" value="1" id="input-rotateControl" class="form-check-input"{% if rotateControl %} checked{% endif %}/>
+                                    </div>
+                                    <div class="form-text">{{ help_rotateControl }}</div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
                                 <label for="input-fullScreenControl" class="col-sm-2 col-form-label">{{ entry_fullScreenControl }}</label>
                                 <div class="col-sm-10">   
                                     <div class="form-check form-switch form-switch-lg">
@@ -132,6 +142,16 @@
                                         <input type="checkbox" name="doubleClickZoom" value="1" id="input-doubleClickZoom" class="form-check-input"{% if doubleClickZoom %} checked{% endif %}/>
                                     </div>
                                     <div class="form-text">{{ help_doubleClickZoom }}</div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="input-dragRotateAndZoom" class="col-sm-2 col-form-label">{{ entry_dragRotateAndZoom }}</label>
+                                <div class="col-sm-10">
+                                    <div class="form-check form-switch form-switch-lg">
+                                        <input type="hidden" name="dragRotateAndZoom" value="0"/>
+                                        <input type="checkbox" name="dragRotateAndZoom" value="1" id="input-dragRotateAndZoom" class="form-check-input"{% if dragRotateAndZoom %} checked{% endif %}/>
+                                    </div>
+                                    <div class="form-text">{{ help_dragRotateAndZoom }}</div>
                                 </div>
                             </div>
                         </div>

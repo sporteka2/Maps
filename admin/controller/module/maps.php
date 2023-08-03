@@ -122,12 +122,24 @@ class Maps extends \Opencart\System\Engine\Controller {
         } else {
             $data['fullScreenControl'] = '0';
         }
+     
+        if (isset($module_info['rotateControl'])) {
+            $data['rotateControl'] = $module_info['rotateControl'];
+        } else {
+            $data['rotateControl'] = '1';
+        }
 
         
         if (isset($module_info['doubleClickZoom'])) {
             $data['doubleClickZoom'] = $module_info['doubleClickZoom'];
         } else {
             $data['doubleClickZoom'] = '1';
+        }
+
+        if (isset($module_info['dragRotateAndZoom'])) {
+            $data['dragRotateAndZoom'] = $module_info['dragRotateAndZoom'];
+        } else {
+            $data['dragRotateAndZoom'] = '0';
         }
 
         

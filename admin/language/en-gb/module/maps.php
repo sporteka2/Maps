@@ -25,7 +25,9 @@ $_['entry_controls'] = 'Controls';
 $_['entry_zoomControl'] = 'Zoom';
 $_['entry_attributionControl'] = 'Attribution';
 $_['entry_fullScreenControl'] = 'FullScreen';
+$_['entry_rotateControl'] = 'Rotate';
 $_['entry_doubleClickZoom'] = 'DoubleClickZoom';
+$_['entry_dragRotateAndZoom'] = 'DragRotateAndZoom';
 $_['entry_tag'] = 'Tag';
 $_['entry_status'] = 'Status';
 
@@ -39,4 +41,6 @@ $_['help_geocode'] = 'Please enter location geocode manually.';
 $_['help_zoomControl'] = 'A control with 2 buttons, one for zoom in and one for zoom out. This control is one of the default controls of a map. To style this control use css selectors <mark>.ol-zoom-in</mark> and <mark>.ol-zoom-out</mark>.';
 $_['help_attributionControl'] = 'Control to show all the attributions associated with the layer sources in the map. This control is one of the default controls included in maps. By default it will show in the bottom right portion of the map, but this can be changed by using a css selector for <mark>.ol-attribution</mark>.';
 $_['help_fullScreenControl'] = 'Provides a button that when clicked fills up the full screen with the map.';
+$_['help_rotateControl'] = 'A button control to reset rotation to 0. To style this control use css selector <mark>.ol-rotate</mark>. A <mark>.ol-hidden</mark> css selector is added to the button when the rotation is 0.';
 $_['help_doubleClickZoom'] = 'Allows the user to zoom by double-clicking on the map.';
+$_['help_dragRotateAndZoom'] = '<mark>Shift+Drag</mark> to rotate and zoom the map around its center.';

@@ -9,17 +9,20 @@ import {defaults} from 'ol/control/defaults';
 import Zoom from 'ol/control/Zoom.js';
 import Attribution from 'ol/control/Attribution.js';
 import FullScreen from 'ol/control/FullScreen.js';
+import Rotate from 'ol/control/Rotate.js';
 
 import {defaults as defaultsInteraction} from 'ol/interaction/defaults';
 import DoubleClickZoom from 'ol/interaction/DoubleClickZoom.js';
-
+import DragRotateAndZoom from 'ol/interaction/DragRotateAndZoom.js';
 
 export async function show(
         map_id, geocode, markerImage, zoom = 0,
         zoomControl, zoomOptions,
         attributionControl,
         fullScreenControl, fullScreenOptions,
-        doubleClickZoom) {
+        rotateControl, rotateControlOptions,
+        doubleClickZoom,
+        dragRotateAndZoom) {
 
     const re = /\s*,\s*/;
     const LatLon = geocode.split(re);
@@ -34,7 +37,8 @@ export async function show(
     const map = new Map({
         controls: defaults({
             zoom: false,
-            attribution: false
+            attribution: false,
+            rotate: false,
         }),
         interactions: defaultsInteraction({
             doubleClickZoom: false
@@ -64,10 +68,18 @@ export async function show(
         map.addControl(
                 new FullScreen(fullScreenOptions));
 
+    if (rotateControl === "1")
+        map.addControl(
+                new Rotate(rotateControlOptions));
+
 
     if (doubleClickZoom === "1")
         map.addInteraction(
                 new DoubleClickZoom());
+
+    if (dragRotateAndZoom === "1")
+        map.addInteraction(
+                new DragRotateAndZoom());
 
 }
 
