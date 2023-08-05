@@ -135,11 +135,32 @@ class Maps extends \Opencart\System\Engine\Controller {
         } else {
             $data['doubleClickZoom'] = '1';
         }
+        if (isset($module_info['doubleClickZoomDuration'])) {
+            $data['doubleClickZoomDuration'] = $module_info['doubleClickZoomDuration'];
+        } else {
+            $data['doubleClickZoomDuration'] = '250';
+        }
+        if (isset($module_info['doubleClickZoomDelta'])) {
+            $data['doubleClickZoomDelta'] = $module_info['doubleClickZoomDelta'];
+        } else {
+            $data['doubleClickZoomDelta'] = '1';
+        }
+
 
         if (isset($module_info['dragRotateAndZoom'])) {
             $data['dragRotateAndZoom'] = $module_info['dragRotateAndZoom'];
         } else {
             $data['dragRotateAndZoom'] = '0';
+        }
+        if (isset($module_info['dragRotateAndZoomCondition'])) {
+            $data['dragRotateAndZoomCondition'] = $module_info['dragRotateAndZoomCondition'];
+        } else {
+            $data['dragRotateAndZoomCondition'] = 'shiftKeyOnly';
+        }
+        if (isset($module_info['dragRotateAndZoomDuration'])) {
+            $data['dragRotateAndZoomDuration'] = $module_info['dragRotateAndZoomDuration'];
+        } else {
+            $data['dragRotateAndZoomDuration'] = '400';
         }
 
         

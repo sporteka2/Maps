@@ -4,6 +4,12 @@ import TileLayer from 'ol/layer/Tile';
 import XYZ from 'ol/source/XYZ';
 import OSM from 'ol/source/OSM.js';
 import {fromLonLat} from 'ol/proj';
+import {altKeyOnly,
+        altShiftKeysOnly,
+        platformModifierKeyOnly,
+        primaryAction,
+        shiftKeyOnly
+        } from 'ol/events/condition';
 
 import {defaults} from 'ol/control/defaults';
 import Zoom from 'ol/control/Zoom.js';
@@ -21,8 +27,8 @@ export async function show(
         attributionControl,
         fullScreenControl, fullScreenOptions,
         rotateControl, rotateControlOptions,
-        doubleClickZoom,
-        dragRotateAndZoom) {
+        doubleClickZoom, doubleClickZoomOptions,
+        dragRotateAndZoom, dragRotateAndZoomOptions) {
 
     const re = /\s*,\s*/;
     const LatLon = geocode.split(re);
@@ -75,11 +81,49 @@ export async function show(
 
     if (doubleClickZoom === "1")
         map.addInteraction(
-                new DoubleClickZoom());
+                new DoubleClickZoom(doubleClickZoomOptions));
 
-    if (dragRotateAndZoom === "1")
-        map.addInteraction(
-                new DragRotateAndZoom());
+    if (dragRotateAndZoom === "1") {
+        const o = dragRotateAndZoomOptions;
+        const d = o["duration"];
+        switch (o["condition"]) {
+            case 'altKeyOnly':
+                map.addInteraction(
+                        new DragRotateAndZoom({
+                            condition: altKeyOnly,
+                            duration: d
+                        }));
+                        break;
+            case 'altShiftKeysOnly':
+                map.addInteraction(
+                        new DragRotateAndZoom({
+                            condition: altShiftKeysOnly,
+                            duration: d
+                        }));
+                        break;
+            case 'platformModifierKeyOnly':
+                map.addInteraction(
+                        new DragRotateAndZoom({
+                            condition: platformModifierKeyOnly,
+                            duration: d
+                        }));
+                        break;
+            case 'primaryAction':
+                map.addInteraction(
+                        new DragRotateAndZoom({
+                            condition: primaryAction,
+                            duration: d
+                        }));
+                        break;
+            case 'shiftKeyOnly':
+                map.addInteraction(
+                        new DragRotateAndZoom({
+                            condition: shiftKeyOnly,
+                            duration: d
+                        }));
+                        break;
+        }
+    }
 
 }
 

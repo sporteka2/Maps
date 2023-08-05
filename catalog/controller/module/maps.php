@@ -9,7 +9,9 @@ class Maps extends \Opencart\System\Engine\Controller {
     public function index(array $setting): string {
 
         $this->sm($setting['config_marker']);
-                
+
+        $this->opt($setting);
+        
         return $this->load->view($this->path, $setting);
     }
 
@@ -23,20 +25,32 @@ class Maps extends \Opencart\System\Engine\Controller {
             $setting = json_decode($module['setting'], true);
 
             if ($setting && $setting['status']) {
-                
+
                 $this->sm($setting['config_marker']);
-                
+
                 $d = array_merge($d, $setting);
 
                 $t++;
                 $d['module_id'] = $setting['module_id'] . 't' . (string) $t;
 
+                $this->opt($d);
+                
                 $data[$setting['tag']] = $this->view($this->path, $d);
             }
         }
     }
 
-    
+    function opt(&$d) {
+        $d['doubleClickZoomOptions'] = json_encode(array(
+            'duration' => intval($d['doubleClickZoomDuration']),
+            'delta' => intval($d['doubleClickZoomDelta'])
+        ));
+        $d['dragRotateAndZoomOptions'] = json_encode(array(
+            'condition' => $d['dragRotateAndZoomCondition'],
+            'duration' => intval($d['dragRotateAndZoomDuration'])
+        ));
+    }
+
     function sm(&$m) {
         if ($m == "") {
             $m = 'extension/maps/catalog/view/javascript/marker.svg';

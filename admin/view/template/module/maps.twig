@@ -46,18 +46,18 @@
                                     <input type="number" min="0" name="zoom" value="{{ zoom }}" placeholder="{{ entry_zoom }}" id="input-zoom" class="form-control"/>
                                 </div>
                             </div>
-              <div class="row mb-3">
-                <label for="input-marker" class="col-sm-2 col-form-label">{{ entry_marker }}</label>
-                <div class="col-sm-10">
-                  <div class="card image" style="width: max-content;display: block;text-align: center;padding: var(--bs-card-spacer-y) var(--bs-card-spacer-y) 0;">
-                    <img src="{{ marker }}" style="width: unset;" alt="" title="" id="thumb-marker" data-oc-placeholder="{{ placeholder }}" class="card-img-top"/> <input type="hidden" name="config_marker" value="{{ config_marker }}" id="input-marker"/>
-                    <div class="card-body" style="padding: var(--bs-card-spacer-y) 0;">
-                      <button type="button" data-oc-toggle="image" data-oc-target="#input-marker" data-oc-thumb="#thumb-marker" class="btn btn-primary btn-sm btn-block"><i class="fa-solid fa-pencil"></i> {{ button_edit }}</button>
-                      <button type="button" data-oc-toggle="clear" data-oc-target="#input-marker" data-oc-thumb="#thumb-marker" class="btn btn-warning btn-sm btn-block"><i class="fa-solid fa-recycle"></i> {{ button_reset }}</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                            <div class="row mb-3">
+                                <label for="input-marker" class="col-sm-2 col-form-label">{{ entry_marker }}</label>
+                                <div class="col-sm-10">
+                                    <div class="card image" style="width: max-content;display: block;text-align: center;padding: var(--bs-card-spacer-y) var(--bs-card-spacer-y) 0;">
+                                        <img src="{{ marker }}" style="width: unset;" alt="" title="" id="thumb-marker" data-oc-placeholder="{{ placeholder }}" class="card-img-top"/> <input type="hidden" name="config_marker" value="{{ config_marker }}" id="input-marker"/>
+                                        <div class="card-body" style="padding: var(--bs-card-spacer-y) 0;">
+                                            <button type="button" data-oc-toggle="image" data-oc-target="#input-marker" data-oc-thumb="#thumb-marker" class="btn btn-primary btn-sm btn-block"><i class="fa-solid fa-pencil"></i> {{ button_edit }}</button>
+                                            <button type="button" data-oc-toggle="clear" data-oc-target="#input-marker" data-oc-thumb="#thumb-marker" class="btn btn-warning btn-sm btn-block"><i class="fa-solid fa-recycle"></i> {{ button_reset }}</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row mb-3">
                                 <label for="input-tag" class="col-sm-2 col-form-label">{{ entry_tag }}</label>
                                 <div class="col-sm-10">
@@ -134,26 +134,83 @@
                             </div>
                         </div>
                         <div id="tab-interactions" class="tab-pane">
-                            <div class="row mb-3">
-                                <label for="input-doubleClickZoom" class="col-sm-2 col-form-label">{{ entry_doubleClickZoom }}</label>
-                                <div class="col-sm-10">
-                                    <div class="form-check form-switch form-switch-lg">
-                                        <input type="hidden" name="doubleClickZoom" value="0"/>
-                                        <input type="checkbox" name="doubleClickZoom" value="1" id="input-doubleClickZoom" class="form-check-input"{% if doubleClickZoom %} checked{% endif %}/>
+                            <fieldset>
+                                <legend>{{ text_doubleClickZoom }}</legend>
+                                <div class="row mb-3">
+                                    <label for="input-doubleClickZoom" class="col-sm-2 col-form-label">{{ entry_status }}</label>
+                                    <div class="col-sm-10">
+                                        <div class="form-check form-switch form-switch-lg">
+                                            <input type="hidden" name="doubleClickZoom" value="0"/>
+                                            <input type="checkbox" name="doubleClickZoom" value="1" id="input-doubleClickZoom" class="form-check-input"{% if doubleClickZoom %} checked{% endif %}/>
+                                        </div>
+                                        <div class="form-text">{{ help_doubleClickZoom }}</div>
                                     </div>
-                                    <div class="form-text">{{ help_doubleClickZoom }}</div>
                                 </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label for="input-dragRotateAndZoom" class="col-sm-2 col-form-label">{{ entry_dragRotateAndZoom }}</label>
-                                <div class="col-sm-10">
-                                    <div class="form-check form-switch form-switch-lg">
-                                        <input type="hidden" name="dragRotateAndZoom" value="0"/>
-                                        <input type="checkbox" name="dragRotateAndZoom" value="1" id="input-dragRotateAndZoom" class="form-check-input"{% if dragRotateAndZoom %} checked{% endif %}/>
+                                <div class="row mb-3">
+                                    <label for="input-doubleClickZoomDuration" class="col-sm-2 col-form-label">{{ entry_doubleClickZoomDuration }}</label>
+                                    <div class="col-sm-10">
+                                        <input type="number" min="0" name="doubleClickZoomDuration" value="{{ doubleClickZoomDuration }}" placeholder="{{ entry_doubleClickZoomDuration }}" id="input-doubleClickZoomDuration" class="form-control"/>
+                                        <div class="form-text">{{ help_doubleClickZoomDuration }}</div>
                                     </div>
-                                    <div class="form-text">{{ help_dragRotateAndZoom }}</div>
                                 </div>
-                            </div>
+                                <div class="row mb-3">
+                                    <label for="input-doubleClickZoomDelta" class="col-sm-2 col-form-label">{{ entry_doubleClickZoomDelta }}</label>
+                                    <div class="col-sm-10">
+                                        <input type="number" min="0" name="doubleClickZoomDelta" value="{{ doubleClickZoomDelta }}" placeholder="{{ entry_doubleClickZoomDelta }}" id="input-doubleClickZoomDelta" class="form-control"/>
+                                        <div class="form-text">{{ help_doubleClickZoomDelta }}</div>
+                                    </div>
+                                </div>
+                            </fieldset> 
+                            <fieldset> 
+                                <legend>{{ text_dragRotateAndZoom }}</legend>
+                                <div class="row mb-3">
+                                    <label for="input-dragRotateAndZoom" class="col-sm-2 col-form-label">{{ entry_status }}</label>
+                                    <div class="col-sm-10">
+                                        <div class="form-check form-switch form-switch-lg">
+                                            <input type="hidden" name="dragRotateAndZoom" value="0"/>
+                                            <input type="checkbox" name="dragRotateAndZoom" value="1" id="input-dragRotateAndZoom" class="form-check-input"{% if dragRotateAndZoom %} checked{% endif %}/>
+                                        </div>
+                                        <div class="form-text">{{ help_dragRotateAndZoom }}</div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="input-dragRotateAndZoomCondition" class="col-sm-2 col-form-label">{{ entry_dragRotateAndZoomCondition }}</label>
+                                    <div class="col-sm-10">
+                                        <div class="form-check form-switch-lg">
+                                            <fieldset>
+                                                <div style="vertical-align: baseline;display: inline;">
+                                                    <input type="radio" name="dragRotateAndZoomCondition" value="shiftKeyOnly" id="input-dragRotateAndZoomConditionShiftKeyOnly" class="form-check-input"{% if dragRotateAndZoomCondition == 'shiftKeyOnly' %} checked{% endif %}/>
+                                                    <label for="input-dragRotateAndZoomConditionShiftKeyOnly" style="font-size: initial;display: block;">{{ entry_dragRotateAndZoomConditionShiftKeyOnly }}</label>
+                                                </div>
+                                                <div style="vertical-align: baseline;display: inline;">
+                                                    <input type="radio" name="dragRotateAndZoomCondition" value="altKeyOnly" id="input-dragRotateAndZoomConditionAltKeyOnly" class="form-check-input"{% if dragRotateAndZoomCondition == 'altKeyOnly' %} checked{% endif %}/>
+                                                    <label for="input-dragRotateAndZoomConditionAltKeyOnly" style="font-size: initial;display: block;">{{ entry_dragRotateAndZoomConditionAltKeyOnly }}</label>
+                                                </div>
+                                                <div style="vertical-align: baseline;display: inline;">
+                                                    <input type="radio" name="dragRotateAndZoomCondition" value="altShiftKeysOnly" id="input-dragRotateAndZoomConditionAltShiftKeysOnly" class="form-check-input"{% if dragRotateAndZoomCondition == 'altShiftKeysOnly' %} checked{% endif %}/>
+                                                    <label for="input-dragRotateAndZoomConditionAltShiftKeysOnly" style="font-size: initial;display: block;">{{ entry_dragRotateAndZoomConditionAltShiftKeysOnly }}</label>
+                                                </div>
+                                                <div style="vertical-align: baseline;display: inline;">
+                                                    <input type="radio" name="dragRotateAndZoomCondition" value="platformModifierKeyOnly" id="input-dragRotateAndZoomConditionPlatformModifierKeyOnly" class="form-check-input"{% if dragRotateAndZoomCondition == 'platformModifierKeyOnly' %} checked{% endif %}/>
+                                                    <label for="input-dragRotateAndZoomConditionPlatformModifierKeyOnly" style="font-size: initial;display: block;">{{ entry_dragRotateAndZoomConditionPlatformModifierKeyOnly }}</label>
+                                                </div>
+                                                <div style="vertical-align: baseline;display: inline;">
+                                                    <input type="radio" name="dragRotateAndZoomCondition" value="primaryAction" id="input-dragRotateAndZoomConditionPrimaryAction" class="form-check-input"{% if dragRotateAndZoomCondition == 'primaryAction' %} checked{% endif %}/>
+                                                    <label for="input-dragRotateAndZoomConditionPrimaryAction" style="font-size: initial;display: block;">{{ entry_dragRotateAndZoomConditionPrimaryAction }}</label>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                        <div class="form-text">{{ help_dragRotateAndZoomCondition }}</div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="input-dragRotateAndZoomDuration" class="col-sm-2 col-form-label">{{ entry_dragRotateAndZoomDuration }}</label>
+                                    <div class="col-sm-10">
+                                        <input type="number" min="0" name="dragRotateAndZoomDuration" value="{{ dragRotateAndZoomDuration }}" placeholder="{{ entry_dragRotateAndZoomDuration }}" id="input-dragRotateAndZoomDuration" class="form-control"/>
+                                        <div class="form-text">{{ help_dragRotateAndZoomDuration }}</div>
+                                    </div>
+                                </div>
+                            </fieldset>
                         </div>
                     </div>
                 </form>
