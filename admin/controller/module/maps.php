@@ -252,13 +252,5 @@ class Maps extends \Opencart\System\Engine\Controller {
     }
 
     public function fm(&$route, &$data, &$output) {
-        $hook = "$(this).find('img').attr('src')";
-        $insert = "(new URLSearchParams(document.location.search))."
-                . "get('route') == 'extension/maps/module/maps' ? "
-                . $hook
-                . ".replace('cache/','')"
-                . ".replace('-136x136','') : "
-                . $hook;
-        $output = str_replace($hook, $insert, $output);
     }
 }
