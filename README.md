@@ -6,7 +6,6 @@ Compatibility
 
 
 
-[![Watch the video]](https://youtu.be/NCfrywrL0Fk)
 https://github.com/sporteka2/OpenLayers/assets/138197434/189475f4-2f9e-45de-a6ae-06591aa11a8f
 
 
