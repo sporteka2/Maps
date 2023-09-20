@@ -1,0 +1,17 @@
+{% include(option) with 
+{ name: 'autoHide',
+  type: 'boolean',
+  default: true } %}
+
+{% include(option) with 
+{ name: 'duration', 
+  default: 250 } %}
+
+{% include(option) with 
+{ name: 'target' } %}
+
+{% include(option) with 
+{ name: 'classNames',
+  values: [
+    {name: 'className', default: 'ol-rotate'},
+    {name: 'compassClassName', default: 'ol-compass'} ] } %}

@@ -1,0 +1,90 @@
+{% include(option) with 
+{ name: 'duration', 
+  type: 'number', 
+  default: 400 } %}
+
+{% include(option) with 
+{ name: 'condition', 
+  type: 'Condition' } %}
+
+
+<div class="row mb-3">
+    <label for="interaction{{ id }}_duration"
+           class="col-sm-2 col-form-label">
+        {{ entry_interaction_dragRotateAndZoom_duration }}</label>
+    <div class="col-sm-10">
+        <input type="number"
+               min="0"
+               name="{{ p }}[duration]" 
+               value="{{ i.duration ?? 400 }}"
+               id="interaction{{ id }}_duration"
+               class="form-control"/>
+        <div class="form-text">
+            {{ help_interaction_dragRotateAndZoom_duration }}</div>
+    </div>
+</div>
+<div class="row mb-3">
+    <label for="input-interaction_dragRotateAndZoom_condition"
+           class="col-sm-2 col-form-label">
+        {{ entry_events_condition }}</label>
+    <div class="col-sm-10">
+        <div class="form-control">
+            <fieldset>
+                <div class="form-check">
+                    <input type="radio"
+                           name="{{ p }}[condition]"
+                           value="shiftKeyOnly"
+                           id="interaction{{ id }}_condition_ShiftKeyOnly"
+                           class="form-check-input"
+                           {% if i.condition is not defined %} checked{% endif %}/>
+                    <label class="form-check-label"
+                           for="interaction{{ id }}_condition_ShiftKeyOnly">
+                        {{ entry_events_condition_ShiftKeyOnly }}</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio"
+                           name="{{ p }}[condition]"
+                           value="altKeyOnly"
+                           id="interaction{{ id }}_condition_AltKeyOnly"
+                           class="form-check-input"{% if i.condition == 'altKeyOnly' %} checked{% endif %}/>
+                    <label class="form-check-label"
+                           for="interaction{{ id }}_condition_AltKeyOnly">
+                        {{ entry_events_condition_AltKeyOnly }}</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio"
+                           name="{{ p }}[condition]"
+                           value="altShiftKeysOnly"
+                           id="interaction{{ id }}_condition_AltShiftKeysOnly"
+                           class="form-check-input"{% if i.condition == 'altShiftKeysOnly' %} checked{% endif %}/>
+                    <label class="form-check-label"
+                           for="interaction{{ id }}_condition_AltShiftKeysOnly">
+                        {{ entry_events_condition_AltShiftKeysOnly }}</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio"
+                           name="{{ p }}[condition]"
+                           value="platformModifierKeyOnly"
+                           id="interaction{{ id }}_condition_PlatformModifierKeyOnly"
+                           class="form-check-input"{% if i.condition == 'platformModifierKeyOnly' %} checked{% endif %}/>
+                    <label class="form-check-label"
+                           for="interaction{{ id }}_condition_PlatformModifierKeyOnly">
+                        {{ entry_events_condition_PlatformModifierKeyOnly }}</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio"
+                           name="{{ p }}[condition]"
+                           value="primaryAction"
+                           id="interaction{{ id }}_condition_PrimaryAction"
+                           class="form-check-input"
+                           {% if i.condition == 'primaryAction' %} checked{% endif %}/>
+                    <label class="form-check-label"
+                           for="interaction{{ id }}_condition_PrimaryAction">
+                        {{ entry_events_condition_PrimaryAction }}</label>
+                    <div class="form-text">
+                        {{ help_events_condition_PrimaryAction }}</div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+{% include(option) with 
+{ name: 'duration', 
+  type: 'number', 
+  default: 100 } %}
+
+{% include(option) with 
+{ name: 'condition', 
+  values: [
+    'noModifierKeys',
+    'shiftKeyOnly',
+    'altKeyOnly',
+    'altShiftKeysOnly', 
+    'platformModifierKeyOnly'],
+  default: 'noModifierKeys' } %}
+
+{% include(option) with 
+{ name: 'delta', 
+  type: 'number', 
+  default: 1 } %}

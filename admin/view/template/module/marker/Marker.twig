@@ -1,0 +1,61 @@
+<div class="row mb-3">
+    <label class="col-sm-2 col-form-label">
+        {{ text_marker_point }}</label>
+    <div class="col-sm-10">
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="row mb-3">
+                    <label for="marker{{ id }}_point_longitude"
+                           class="form-label">
+                        {{ entry_coordinate_longitude }}</label>
+                    <div>
+                        <input type="text"
+                               name="m[{{ item }}][{{ id }}][point][longitude]"
+                               value="{{ m[item][id].point.longitude }}" 
+                               id="marker{{ id }}_point_longitude" 
+                               class="form-control"/>
+                        <div class="form-text">
+                            {{ help_coordinate_longitude }}</div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="marker{{ id }}_point_latitude"
+                           class="form-label">
+                        {{ entry_coordinate_latitude }}</label>
+                    <div>
+                        <input type="text"
+                               name="m[{{ item }}][{{ id }}][point][latitude]" 
+                               value="{{ m[item][id].point.latitude }}" 
+                               id="marker{{ id }}_point_latitude" 
+                               class="form-control"/>
+                        <div class="form-text">
+                            {{ help_coordinate_latitude }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mb-3">
+    <label for="marker{{ id }}" 
+           class="col-sm-2 col-form-label">
+        {{ entry_marker_image }}</label>
+    <div class="col-sm-10">
+        <img src="{{ m[item][id].img ?? default_marker }}" 
+             alt=""
+             title=""
+             id="thumb-marker{{ id }}" 
+             class="img-thumbnail mb-2"/>
+        <input type="hidden"
+               name="MAX_FILE_SIZE" 
+               value="{{ config_file_max_size }}" />
+        <input class="form-control"
+               type="file" 
+               onchange="previewFile('{{ id }}');" 
+               name="marker[{{ id }}]"
+               id="marker{{ id }}"
+               accept="image/svg+xml">
+        <div id="error-file"
+             class="invalid-feedback"></div>
+    </div>
+</div>

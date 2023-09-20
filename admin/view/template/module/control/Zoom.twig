@@ -1,0 +1,19 @@
+{% include(option) with 
+{ name: 'duration', 
+  type: 'number', 
+  default: 250 } %}
+
+{% include(option) with 
+{ name: 'delta', 
+  type: 'number', 
+  default: 1 } %}
+
+{% include(option) with 
+{ name: 'target' } %}
+
+{% include(option) with 
+{ name: 'classNames',
+  values: [
+    {name: 'className', default: 'ol-zoom'},
+    {name: 'zoomInClassName'},
+    {name: 'zoomOutClassName'} ] } %}

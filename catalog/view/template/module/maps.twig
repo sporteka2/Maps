@@ -9,28 +9,10 @@
         <div id="map{{ module_id }}" class="map" tabindex="0"></div>
         <div id="popup"></div>
     </div>
+        {{ control_zoom_options_zoomInTipLabel }}
 </div>
 <script src="extension/maps/catalog/view/javascript/ol/main.js"></script>
 <script>
-    map.show("map{{ module_id }}", "{{ geocode }}", "{{ config_marker }}",
-    {{ zoom }},
-                "{{ zoomControl }}",
-                {
-                    zoomInTipLabel: "{{ zoomInControlTipLabel }}",
-                    zoomOutTipLabel: "{{ zoomOutControlTipLabel }}"
-                },
-                "{{ attributionControl }}",
-                "{{ fullScreenControl }}",
-                {
-                    tipLabel: "{{ fullScreenControlTipLabel }}"
-                },
-                "{{ rotateControl }}",
-                {
-                    tipLabel: "{{ rotateControlTipLabel }}"
-                },
-                "{{ doubleClickZoom }}", {{ doubleClickZoomOptions}},
-                "{{ dragRotateAndZoom }}", {{ dragRotateAndZoomOptions }}
-                
-                );
+    map.show({{ m }});
 </script>
 <link href="extension/maps/catalog/view/javascript/ol/main.css" type="text/css" rel="stylesheet" media="screen"/>
