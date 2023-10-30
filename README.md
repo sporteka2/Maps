@@ -8,7 +8,6 @@ Compatibility
 
 
 
-https://github.com/sporteka2/Maps/assets/138197434/3f012794-f611-4915-a5e9-ad0cad23f29b
 
 
 
