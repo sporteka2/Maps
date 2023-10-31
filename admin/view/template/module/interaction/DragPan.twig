@@ -1,0 +1,17 @@
+{% include(option) with 
+{ name: 'condition', 
+  values: [
+    'always',
+    'shiftKeyOnly',
+    'altKeyOnly',
+    'altShiftKeysOnly', 
+    'platformModifierKeyOnly'],
+  default: 'always' } %}
+
+{% include(option) with 
+{ name: 'onFocusOnly', 
+  type: 'boolean', 
+  default: 0 } %}
+
+{% include(option) with 
+{ name: 'kinetic' } %}

@@ -1,0 +1,29 @@
+{% include(option) with 
+{ name: 'condition', 
+  values: [
+    'noModifierKeys',
+    'shiftKeyOnly',
+    'altKeyOnly',
+    'altShiftKeysOnly', 
+    'platformModifierKeyOnly',
+    'primaryAction' ],
+  default: 'shiftKeyOnly' } %}
+
+{% include(option) with 
+{ name: 'duration', 
+  type: 'number', 
+  default: 200 } %}
+
+{% include(option) with 
+{ name: 'out', 
+  type: 'boolean', 
+  default: false } %}
+
+{% include(option) with 
+{ name: 'minArea', 
+  type: 'number', 
+  default: 64 } %}
+
+{% include(option) with 
+{ name: 'className', 
+  default: 'ol-dragzoom' } %}

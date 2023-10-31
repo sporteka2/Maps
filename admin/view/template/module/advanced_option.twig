@@ -1,0 +1,23 @@
+<div class="accordion pt-3 pb-2">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="advanced{{ id }}">
+      <button class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#p_advanced{{ id }}"
+              aria-expanded="false"
+              aria-controls="p_advanced{{ id }}">{{ text_advanced }}</button>
+    </h2>
+    <div id="p_advanced{{ id }}"
+         class="accordion-collapse collapse"
+         aria-labelledby="advanced{{ id }}">
+      <div class="accordion-body">
+
+        {% for o in options %}
+          {% include(option) with o %}
+        {% endfor %}
+
+      </div>
+    </div>
+  </div>
+</div>

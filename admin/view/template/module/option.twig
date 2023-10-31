@@ -1,0 +1,256 @@
+{% if item == 'layer' and name == 'source' %}
+
+  <div class="card mt-3">
+
+    <div class="card-body">
+
+      <div class="row mb-3">
+
+        <label for="source{{ id }}" class="form-label">{{ entry_source }}</label>
+
+        <div>
+
+          <select name="m[source][{{ id }}][class]"
+                  id="source{{ id }}"
+                  class="form-select layer-source"
+                  item_id="{{ id }}"
+                  onchange="changeSource(this);">
+
+            <option value="OSM" {% if m.source[id].class == "OSM" %}selected{% endif %}>OSM</option>
+
+            <option value="BingMaps"
+                    {% if m.source[id].class == "BingMaps" %}selected{% endif %}>BingMaps</option>
+
+            <option value="XYZ" {% if m.source[id].class == "XYZ" %}selected{% endif %}>XYZ</option>
+
+          </select>
+
+          <div class="form-text help_source">{{ help_source }}</div>
+
+        </div>
+
+      </div>
+
+      <hr>
+
+      <div class="source-body">
+        {% set class = m.source[id].class ?? 'OSM' %}
+
+        {% include(ip~'source/'~class~'.twig') %}
+
+      </div>
+
+    </div>
+
+  </div>
+
+{% elseif name == 'kinetic' or name == 'classNames' %}
+
+  <div class="accordion pt-3">
+
+    <div class="accordion-item">
+
+      <h2 class="accordion-header" id="{{ name }}{{ id }}">
+
+        <button class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#p_{{ name }}{{ id }}"
+                aria-expanded="false"
+                aria-controls="p_{{ name }}{{ id }}">{{ attribute(_context, 'text_'~name) }}</button>
+
+      </h2>
+
+      <div id="p_{{ name }}{{ id }}"
+           class="accordion-collapse collapse"
+           aria-labelledby="{{ name }}{{ id }}">
+
+        <div class="accordion-body">
+
+          {% if name == 'kinetic' %}
+            {% include(option) with
+            { name: 'decay',
+            type: 'kinetic' } %}
+
+            {% include(option) with
+            { name: 'minVelocity',
+            type: 'kinetic' } %}
+
+            {% include(option) with
+            { name: 'delay',
+            type: 'kinetic' } %}
+
+          {% else %}
+
+            {% for key,v in options[item][class].advanced[name] %}
+
+              {% include(option) with
+              { name: key,
+              default: v.default, } %}
+
+            {% endfor %}
+
+          {% endif %}
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+{% else %}
+
+  {% set o = 'm['~item~']['~id~'][options]['~name~']' %}
+  {% set v = m[item][id]['options'][name] ?? default %}
+
+  {% if name == 'condition' %}
+
+    <div class="row mb-3">
+
+      <label class="form-label">{{ entry_events_condition }}</label>
+
+      <div>
+
+        <div class="form-control">
+
+          <fieldset class="mb-0">
+
+            {% for vl in values %}
+
+              <div class="form-check">
+
+                <input type="radio"
+                       name="{{ o }}"
+                       value="{{ vl }}"
+                       id="condition{{ id }}{{ vl }}"
+                       class="form-check-input"
+                       {% if v == vl %}checked{% endif %} />
+
+                <label class="form-check-label" for="condition{{ id }}{{ vl }}">
+                  {{ attribute(_context,
+                                    'entry_events_condition_'~vl) }}
+
+                </label>
+
+                <div class="form-text mt-0">
+                  {{ attribute(_context,
+                                    'help_events_condition_'~vl) }}
+
+                </div>
+
+              </div>
+
+            {% endfor %}
+
+          </fieldset>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  {% else %}
+
+    <div class="row mb-3">
+
+      <label for="{{ o }}" class="form-label">
+
+        {% if type == 'kinetic' %}
+          {{ attribute(_context, 'entry_kinetic_'~name) }}
+
+        {% else %}
+          {{ attribute(_context, 'entry_'~class~'_'~name) }}
+
+        {% endif %}
+
+      </label>
+
+      <div>
+
+        {% if type is not defined or type == 'AttributionLike' %}
+
+          <input type="text"
+                 id="{{ o }}"
+                 name="{{ o }}"
+                 value="{{ v }}"
+                 class="form-control" />
+
+        {% elseif type == 'number' or type == 'kinetic' %}
+
+          <input type="number"
+                 id="{{ o }}"
+                 name="{{ o }}"
+                 value="{{ v }}"
+                 class="form-control" />
+
+        {% elseif type == 'boolean' %}
+
+          <div class="form-check form-switch form-switch-lg">
+
+            <input type="hidden" name="{{ o }}" value="0" />
+
+            <input type="checkbox"
+                   id="{{ o }}"
+                   name="{{ o }}"
+                   value="1"
+                   class="form-check-input"
+                   {% if v %}checked{% endif %} />
+
+          </div>
+
+        {% elseif type == 'select' or type == 'ProjectionLike' %}
+
+          {% if type == 'ProjectionLike' %}
+
+            <select name="{{ o }}" id="input-view_projection" class="form-select">
+
+              {% if v == "" %}<option value="" selected>{{ entry_view_projection_undefined }}</option>{% endif %}
+              >
+
+              <option value="EPSG:3857" {% if v == "EPSG:3857" %}selected{% endif %}>{{ entry_view_projection_EPSG_3857 }}</option>
+
+              <option value="EPSG:4326" {% if v == "EPSG:4326" %}selected{% endif %}>{{ entry_view_projection_EPSG_4326 }}</option>
+
+            </select>
+
+          {% else %}
+
+            <select name="{{ o }}" id="{{ o }}" class="form-select">
+
+              {% for vl in values %}
+
+                <option value="{{ vl }}" {% if vl == v %}selected{% endif %}>
+                  {{ attribute(_context,
+                                    'entry_'~class~'_'~name~'_'~vl) }}
+
+                </option>
+
+              {% endfor %}
+
+            </select>
+
+          {% endif %}
+
+        {% endif %}
+
+        <div class="form-text">
+
+          {% if type == 'kinetic' %}
+            {{ attribute(_context, 'help_kinetic_'~name) }}
+
+          {% else %}
+            {{ attribute(_context, 'help_'~class~'_'~name) }}
+
+          {% endif %}
+
+        </div>
+
+      </div>
+
+    </div>
+
+  {% endif %}
+{% endif %}

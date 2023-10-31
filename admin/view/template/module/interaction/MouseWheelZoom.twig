@@ -1,0 +1,40 @@
+{% include(option) with 
+{ name: 'condition', 
+  values: [
+    'always',
+    'noModifierKeys',
+    'shiftKeyOnly',
+    'altKeyOnly',
+    'altShiftKeysOnly', 
+    'platformModifierKeyOnly'],
+  default: 'always' } %}
+
+{% include(option) with 
+{ name: 'duration', 
+  type: 'number', 
+  default: 250 } %}
+
+{% include(option) with 
+{ name: 'maxDelta', 
+  type: 'number', 
+  default: 1 } %}
+
+{% include(option) with 
+{ name: 'timeout', 
+  type: 'number', 
+  default: 80 } %}
+
+{% include(option) with 
+{ name: 'onFocusOnly', 
+  type: 'boolean', 
+  default: false } %}
+
+{% include(option) with 
+{ name: 'useAnchor', 
+  type: 'boolean', 
+  default: true } %}
+
+{% include(option) with 
+{ name: 'constrainResolution', 
+  type: 'boolean', 
+  default: false } %}

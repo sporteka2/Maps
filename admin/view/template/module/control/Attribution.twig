@@ -1,0 +1,64 @@
+{% include(option) with {
+name: 'collapsible',
+type: 'select',
+values: ['', 'true', 'false'],
+default: ''
+} %}
+
+{% include(option) with {
+name: 'collapsed',
+type: 'boolean',
+default: true
+} %}
+
+<div class="accordion pt-3 pb-2">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="advanced{{ id }}">
+      <button class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#p_advanced{{ id }}"
+              aria-expanded="false"
+              aria-controls="p_advanced{{ id }}">{{ text_advanced }}</button>
+    </h2>
+    <div id="p_advanced{{ id }}"
+         class="accordion-collapse collapse"
+         aria-labelledby="advanced{{ id }}">
+      <div class="accordion-body">
+
+        {% include(option) with
+        { name: 'target' } %}
+
+        <div class="accordion pt-3 pb-2">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="classNames{{ id }}">
+              <button class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#p_classNames{{ id }}"
+                      aria-expanded="false"
+                      aria-controls="p_classNames{{ id }}">{{ text_classNames }}</button>
+            </h2>
+            <div id="p_classNames{{ id }}"
+                 class="accordion-collapse collapse"
+                 aria-labelledby="classNames{{ id }}">
+              <div class="accordion-body">
+
+                {% include(option) with {
+                name: 'className',
+                default: 'ol-attribution' } %}
+
+                {% include(option) with
+                { name: 'expandClassName' } %}
+
+                {% include(option) with
+                { name: 'collapseClassName' } %}
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

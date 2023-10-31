@@ -1,0 +1,17 @@
+{% include(option) with 
+{ name: 'keys', 
+  type: 'boolean', 
+  default: false } %}
+
+{% include(option) with 
+{ name: 'target' } %}
+
+{% include(option) with 
+{ name: 'source' } %}
+
+{% include(option) with 
+{ name: 'classNames',
+  values: [
+    {name: 'className', default: 'ol-full-screen'},
+    {name: 'activeClassName'},
+    {name: 'inactiveClassName'} ] } %}

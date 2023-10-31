@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkmap=self.webpackChunkmap||[]).push([[473],{9473:(e,n,s)=>{s.d(n,{default:()=>w});var t=s(1090),a=s(188),c=s(3078),r=s(7539),o=s(2846),u=s(2708);function w(e,n,s){const w=new t.Z({geometry:new a.Z(e)}),i=new r.ZP({image:new o.Z({anchor:[.5,s],anchorXUnits:"fraction",anchorYUnits:"pixels",src:n})});w.setStyle(i);const f=new c.Z({features:[w]});return new u.Z({source:f})}}}]);
+//# sourceMappingURL=473.js.map

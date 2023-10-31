@@ -1,0 +1,14 @@
+{% include(option) with 
+{ name: 'duration', 
+  type: 'number', 
+  default: 400 } %}
+
+{% include(option) with 
+{ name: 'condition',
+  values: [
+    'shiftKeyOnly',
+    'altKeyOnly',
+    'altShiftKeysOnly', 
+    'platformModifierKeyOnly', 
+    'primaryAction'],
+  default: 'shiftKeyOnly' } %}

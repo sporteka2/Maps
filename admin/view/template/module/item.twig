@@ -1,0 +1,121 @@
+<div class="accordion-item">
+
+  <h2 class="accordion-header" id="h{{ id }}">
+
+    <button class="accordion-button collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#p{{ id }}"
+            aria-expanded="true"
+            aria-controls="p{{ id }}">{{ text_item_header }}</button>
+
+  </h2>
+
+  <div id="p{{ id }}"
+       class="accordion-collapse collapse"
+       aria-labelledby="h{{ id }}">
+
+    <div class="accordion-body">
+
+      {% if item != 'marker' %}
+
+        <div class="row mb-3">
+
+          <label for="item{{ id }}-class" class="form-label">{{ entry_item_class }}</label>
+
+          <div id="item{{ id }}-class">
+
+            <select class="form-select {{ item }}-classes item-classes"
+                    {% if item != 'marker' %}name="m[{{ item }}][{{ id }}][class]"{% endif %}
+                    item_id="{{ id }}"
+                    onchange="changeItem(this);">
+
+              {% for name in classes[item] %}
+
+                <option value="{{ name }}" {% if class == name %}selected{% endif %}>{{ name }}</option>
+
+              {% endfor %}
+
+            </select>
+
+            <div class="form-text help_item_class"></div>
+
+          </div>
+
+        </div>
+
+      {% endif %}
+
+      <div class="row mb-3">
+
+        <label for="name{{ id }}"
+               class="{% if item == 'marker' %}
+                        col-sm-2 col-
+                      {% endif %}
+                      form-label">{{ entry_item_title }}</label>
+
+        <div {% if item == 'marker' %}class="col-sm-10"{% endif %}>
+
+          <input type="text"
+                 name="t[{{ item }}][{{ id }}][name]"
+                 value="{{ t[item][id].name ?? class }}"
+                 id="name{{ id }}"
+                 class="form-control item-name"
+                 onchange="changeItemName(this);" />
+
+          <div class="form-text">{{ help_item_name }}</div>
+
+        </div>
+
+      </div>
+
+      <div class="accordion pt-3 pb-4">
+
+        <div class="accordion-item">
+
+          <h2 class="accordion-header" id="{{ name }}{{ id }}">
+
+            <button class="accordion-button"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#p_{{ name }}{{ id }}"
+                    aria-expanded="false"
+                    aria-controls="p_{{ name }}{{ id }}">{{ text_options }}</button>
+
+          </h2>
+
+          <div id="p_{{ name }}{{ id }}"
+               class="accordion-collapse collapse show"
+               aria-labelledby="{{ name }}{{ id }}">
+
+            <div class="accordion-body subclass-body">{% include(ip~item~'/'~class~'.twig') %}</div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <button type="button" class="btn btn-outline-danger" onclick="delItem(this);">
+        <i class="fa-regular fa-trash-can"></i>
+
+        {% if item == 'control' %}
+          {{ text_delete_control }}
+
+        {% elseif item == 'interaction' %}
+          {{ text_delete_interaction }}
+
+        {% elseif item == 'layer' %}
+          {{ text_delete_layer }}
+
+        {% elseif item == 'marker' %}
+          {{ text_delete_marker }}
+
+        {% endif %}
+
+      </button>
+
+    </div>
+
+  </div>
+</div>

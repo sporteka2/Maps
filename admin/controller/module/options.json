@@ -1,0 +1,582 @@
+{
+    "control": {
+        "Attribution": {
+            "collapsible": {
+                "type": "boolean",
+                "default": null
+            },
+            "collapsed": {
+                "type": "boolean",
+                "default": true
+            },
+            "advanced": {
+                "target": {
+                    "type": "string",
+                    "default": null
+                },
+                "classNames": {
+                    "className": {
+                        "type": "string",
+                        "default": "ol-attribution"
+                    },
+                    "expandClassName": {
+                        "type": "string",
+                        "default": null
+                    },
+                    "collapseClassName": {
+                        "type": "string",
+                        "default": null
+                    }
+                }
+            }
+        },
+        "FullScreen": {
+            "keys": {
+                "type": "boolean",
+                "default": false
+            },
+            "source": {
+                "type": "string",
+                "default": null
+            },
+            "advanced": {
+                "target": {
+                    "type": "string",
+                    "default": null
+                },
+                "classNames": {
+                    "className": {
+                        "type": "string",
+                        "default": "ol-full-screen0"
+                    },
+                    "activeClassName": {
+                        "type": "string",
+                        "default": null
+                    },
+                    "inactiveClassName": {
+                        "type": "string",
+                        "default": null
+                    }
+                }
+            }
+        },
+        "MousePosition": {
+            "projection": {
+                "type": "ProjectionLike"
+            },
+            "placeholder": {
+                "type": "string",
+                "default": null
+            },
+            "wrapX": {
+                "type": "boolean",
+                "default": true
+            },
+            "advanced": {
+                "target": {
+                    "type": "string",
+                    "default": null
+                },
+                "className": {
+                    "type": "string",
+                    "default": "ol-mouse-position"
+                }
+            }
+        },
+        "OverviewMap": {
+            "collapsed": {
+                "type": "boolean",
+                "default": true
+            },
+            "collapsible": {
+                "type": "boolean",
+                "default": true
+            },
+            "rotateWithView": {
+                "type": "boolean"
+            },
+            "advanced": {
+                "target": {
+                    "type": "string",
+                    "default": null
+                },
+                "className": {
+                    "type": "string",
+                    "default": "ol-overviewmap"
+                }
+            }
+        },
+        "Rotate": {
+            "autoHide": {
+                "type": "boolean",
+                "default": true
+            },
+            "duration": {
+                "type": "number",
+                "default": 0
+            },
+            "advanced": {
+                "target": {
+                    "type": "string",
+                    "default": null
+                },
+                "classNames": {
+                    "className": {
+                        "type": "string",
+                        "default": "ol-rotate"
+                    },
+                    "compassClassName": {
+                        "type": "string",
+                        "default": "ol-compass"
+                    }
+                }
+            }
+        },
+        "ScaleLine": {
+            "bar": {
+                "type": "boolean",
+                "default": false
+            },
+            "dpi": {
+                "type": "number",
+                "default": 0
+            },
+            "maxWidth": {
+                "type": "number",
+                "default": null
+            },
+            "minWidth": {
+                "type": "number",
+                "default": 64
+            },
+            "steps": {
+                "type": "number",
+                "default": 4
+            },
+            "text": {
+                "type": "boolean",
+                "default": false
+            },
+            "advanced": {
+                "target": {
+                    "type": "string",
+                    "default": null
+                },
+                "className": {
+                    "type": "string",
+                    "default": null
+                }
+            }
+        },
+        "Zoom": {
+            "duration": {
+                "type": "number",
+                "default": 0
+            },
+            "delta": {
+                "type": "number",
+                "default": 1
+            },
+            "advanced": {
+                "target": {
+                    "type": "string",
+                    "default": null
+                },
+                "classNames": {
+                    "className": {
+                        "type": "string",
+                        "default": "ol-zoom"
+                    },
+                    "expandClassName": {
+                        "type": "string",
+                        "default": null
+                    },
+                    "collapseClassName": {
+                        "type": "string",
+                        "default": null
+                    }
+                }
+            }
+        },
+        "ZoomSlider": {
+            "duration": {
+                "type": "number",
+                "default": 0
+            },
+            "advanced": {
+                "target": {
+                    "type": "string",
+                    "default": null
+                },
+                "className": {
+                    "type": "string",
+                    "default": "ol-zoomslider"
+                }
+            }
+        },
+        "ZoomToExtent": {
+            "target": {
+                "type": "string",
+                "default": null
+            },
+            "className": {
+                "type": "string",
+                "default": "ol-zoom-extent"
+            }
+        }
+    },
+    "interactions": {
+        "DoubleClickZoom": {
+            "duration": {
+                "type": "number",
+                "default": 0
+            },
+            "delta": {
+                "type": "number",
+                "default": 1
+            }
+        },
+        "DragAndDrop": {
+            "projection": {
+                "type": "ProjectionLike",
+                "default": null
+            }
+        },
+        "DragPan": {
+            "condition": {
+                "values": [
+                    "always",
+                    "shiftKeyOnly",
+                    "altKeyOnly",
+                    "altShiftKeysOnly",
+                    "platformModifierKeyOnly"
+                ],
+                "default": "always"
+            },
+            "onFocusOnly": {
+                "type": "boolean",
+                "default": false
+            },
+            "kinetic": ""
+        },
+        "DragRotate": {
+            "duration": {
+                "type": "number",
+                "default": 0
+            },
+            "condition": {
+                "values": [
+                    "shiftKeyOnly",
+                    "altKeyOnly",
+                    "altShiftKeysOnly",
+                    "platformModifierKeyOnly",
+                    "primaryAction"
+                ],
+                "default": "altShiftKeysOnly"
+            }
+        },
+        "DragRotateAndZoom": {
+            "duration": {
+                "type": "number",
+                "default": 0
+            },
+            "condition": {
+                "values": [
+                    "shiftKeyOnly",
+                    "altKeyOnly",
+                    "altShiftKeysOnly",
+                    "platformModifierKeyOnly",
+                    "primaryAction"
+                ],
+                "default": "shiftKeyOnly"
+            }
+        },
+        "DragZoom": {
+            "duration": {
+                "type": "number",
+                "default": 0
+            },
+            "condition": {
+                "values": [
+                    "noModifierKeys",
+                    "shiftKeyOnly",
+                    "altKeyOnly",
+                    "altShiftKeysOnly",
+                    "platformModifierKeyOnly",
+                    "primaryAction"
+                ],
+                "default": "shiftKeyOnly"
+            },
+            "out": {
+                "type": "boolean",
+                "default": false
+            },
+            "minArea": {
+                "type": "number",
+                "default": 64
+            },
+            "className": {
+                "type": "string",
+                "default": "ol-dragzoom"
+            }
+        },
+        "KeyboardPan": {
+            "duration": {
+                "type": "number",
+                "default": 0
+            },
+            "condition": {
+                "values": [
+                    "noModifierKeys",
+                    "shiftKeyOnly",
+                    "altKeyOnly",
+                    "altShiftKeysOnly",
+                    "platformModifierKeyOnly"
+                ],
+                "default": "noModifierKeys"
+            },
+            "pixelDelta": {
+                "type": "number",
+                "default": 128
+            }
+        },
+        "KeyboardZoom": {
+            "duration": {
+                "type": "number",
+                "default": 0
+            },
+            "condition": {
+                "values": [
+                    "noModifierKeys",
+                    "shiftKeyOnly",
+                    "altKeyOnly",
+                    "altShiftKeysOnly",
+                    "platformModifierKeyOnly"
+                ],
+                "default": "noModifierKeys"
+            },
+            "delta": {
+                "type": "number",
+                "default": 1
+            }
+        },
+        "MouseWheelZoom": {
+            "duration": {
+                "type": "number",
+                "default": 0
+            },
+            "condition": {
+                "values": [
+                    "always",
+                    "noModifierKeys",
+                    "shiftKeyOnly",
+                    "altKeyOnly",
+                    "altShiftKeysOnly",
+                    "platformModifierKeyOnly"
+                ],
+                "default": "always"
+            },
+            "maxDelta": {
+                "type": "number",
+                "default": 1
+            },
+            "timeout": {
+                "type": "number",
+                "default": 80
+            },
+            "onFocusOnly": {
+                "type": "boolean",
+                "default": false
+            },
+            "useAnchor": {
+                "type": "boolean",
+                "default": true
+            },
+            "constrainResolution": {
+                "type": "boolean",
+                "default": false
+            }
+        },
+        "PinchRotate": {
+            "duration": {
+                "type": "number",
+                "default": 0
+            },
+            "threshold": {
+                "type": "number",
+                "default": 0.3
+            }
+        },
+        "PinchZoom": {
+            "duration": {
+                "type": "number",
+                "default": 0
+            }
+        }
+    },
+    "layer": {
+        "TileLayer": {
+            "className": {
+                "type": "string",
+                "default": "ol-layer"
+            },
+            "maxResolution": {
+                "type": "number",
+                "default": null
+            },
+            "minResolution": {
+                "type": "number",
+                "default": null
+            },
+            "maxZoom": {
+                "type": "number",
+                "default": null
+            },
+            "minZoom": {
+                "type": "number",
+                "default": null
+            },
+            "opacity": {
+                "type": "number",
+                "default": 1
+            },
+            "preload": {
+                "type": "number",
+                "default": 0
+            },
+            "useInterimTilesOnError": {
+                "type": "boolean",
+                "default": true
+            },
+            "visible": {
+                "type": "boolean",
+                "default": true
+            },
+            "zIndex": {
+                "type": "number"
+            },
+            "source": {
+                "type": "string",
+                "default": null
+            }
+        }
+    },
+    "source": {
+        "XYZ": {
+            "attributionsCollapsible": {
+                "type": "boolean",
+                "default": true
+            },
+            "cacheSize": {
+                "type": "number",
+                "default": null
+            },
+            "crossOrigin": "",
+            "interpolate": {
+                "type": "boolean",
+                "default": true
+            },
+            "opaque": {
+                "type": "boolean",
+                "default": null
+            },
+            "projection": {
+                "type": "ProjectionLike",
+                "default": "EPSG:3857"
+            },
+            "reprojectionErrorThreshold": {
+                "type": "number",
+                "default": 0.5
+            },
+            "maxZoom": {
+                "type": "number",
+                "default": 42
+            },
+            "minZoom": {
+                "type": "number",
+                "default": 0
+            },
+            "maxResolution": {
+                "type": "number",
+                "default": null
+            },
+            "tilePixelRatio": {
+                "type": "number",
+                "default": 1
+            },
+            "wrapX": {
+                "type": "boolean",
+                "default": true
+            },
+            "transition": {
+                "type": "number",
+                "default": 250
+            },
+            "zDirection": {
+                "type": "number",
+                "default": 0
+            },
+            "url": "",
+            "gutter": {
+                "type": "number",
+                "default": 0
+            }
+        },
+        "OSM": {
+            "attributionsCollapsible": {
+                "type": "boolean",
+                "default": true
+            },
+            "cacheSize": {
+                "type": "number",
+                "default": null
+            },
+            "crossOrigin": "",
+            "interpolate": {
+                "type": "boolean",
+                "default": true
+            },
+            "opaque": {
+                "type": "boolean",
+                "default": null
+            },
+            "reprojectionErrorThreshold": {
+                "type": "number",
+                "default": 0.5
+            },
+            "maxZoom": {
+                "type": "number",
+                "default": 42
+            },
+            "minZoom": {
+                "type": "number",
+                "default": 0
+            },
+            "maxResolution": {
+                "type": "number",
+                "default": null
+            },
+            "tilePixelRatio": {
+                "type": "number",
+                "default": 1
+            },
+            "wrapX": true,
+            "transition": {
+                "type": "number",
+                "default": 250
+            },
+            "zDirection": {
+                "type": "number",
+                "default": 0
+            },
+            "url": {
+                "type": "string",
+                "default": null
+            },
+            "gutter": {
+                "type": "number",
+                "default": 0
+            }
+        }
+    }
+}

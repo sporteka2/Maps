@@ -1,0 +1,18 @@
+<style>
+    #map{{ module_id }}{
+        width:  {{ width }};
+        height: {{ height }};
+    }
+</style>
+<div class="row">
+    <div class="col-sm-12">
+        <div id="map{{ module_id }}" class="map" tabindex="0"></div>
+        <div id="popup"></div>
+    </div>
+        {{ control_zoom_options_zoomInTipLabel }}
+</div>
+<script src="extension/maps/catalog/view/javascript/ol/main.js"></script>
+<script>
+    map.show({{ m }});
+</script>
+<link href="extension/maps/catalog/view/javascript/ol/main.css" type="text/css" rel="stylesheet" media="screen"/>
