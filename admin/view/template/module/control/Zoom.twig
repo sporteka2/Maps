@@ -9,11 +9,9 @@
   default: 1 } %}
 
 {% include(option) with 
-{ name: 'target' } %}
-
-{% include(option) with 
-{ name: 'classNames',
+{ name: 'advanced',
   values: [
+    {name: 'target' },
     {name: 'className', default: 'ol-zoom'},
     {name: 'zoomInClassName'},
     {name: 'zoomOutClassName'} ] } %}

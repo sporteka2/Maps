@@ -1,121 +1,144 @@
-<div class="accordion-item">
+<div
+	class="accordion-item">
 
-  <h2 class="accordion-header" id="h{{ id }}">
+	<h2
+		class="accordion-header"
+		id="h{{ id }}">
 
-    <button class="accordion-button collapsed"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#p{{ id }}"
-            aria-expanded="true"
-            aria-controls="p{{ id }}">{{ text_item_header }}</button>
+		<button
+			class="accordion-button collapsed"
+			type="button"
+			data-bs-toggle="collapse"
+			data-bs-target="#p{{ id }}"
+			aria-expanded="true"
+			aria-controls="p{{ id }}">
+			{{ text_item_header }}
+			{% if item != 'marker' %}
+				{{ class }}
+			{% endif %}
+		</button>
+	</h2>
 
-  </h2>
+	<div
+		id="p{{ id }}"
+		class="accordion-collapse collapse"
+		aria-labelledby="h{{ id }}">
 
-  <div id="p{{ id }}"
-       class="accordion-collapse collapse"
-       aria-labelledby="h{{ id }}">
+		<div
+			class="accordion-body">
 
-    <div class="accordion-body">
+			{% if item != 'marker' %}
 
-      {% if item != 'marker' %}
+				<input
+					type="hidden"
+					id="hidden{{ id }}"
+					name="m[{{ item }}][{{ id }}][class]"
+					value="{{ class }}"/>
 
-        <div class="row mb-3">
+				<div
+					class="row mb-3">
 
-          <label for="item{{ id }}-class" class="form-label">{{ entry_item_class }}</label>
+					<div
+						id="item{{ id }}-class">
 
-          <div id="item{{ id }}-class">
+						<div
+							class="form-text help_item_class">
+							{{help}}
+						</div>
 
-            <select class="form-select {{ item }}-classes item-classes"
-                    {% if item != 'marker' %}name="m[{{ item }}][{{ id }}][class]"{% endif %}
-                    item_id="{{ id }}"
-                    onchange="changeItem(this);">
+					</div>
 
-              {% for name in classes[item] %}
+				</div>
 
-                <option value="{{ name }}" {% if class == name %}selected{% endif %}>{{ name }}</option>
+			{% endif %}
 
-              {% endfor %}
+			{% if item == 'marker' %}
+				<div
+					class="row mb-3">
 
-            </select>
+					<label
+						for="name{{ id }}"
+						class="col-sm-2 col- form-label">{{ entry_item_title }}</label>
+					<div
+						class="col-sm-10">
 
-            <div class="form-text help_item_class"></div>
+						<input
+							type="text"
+							name="t[{{ item }}][{{ id }}][name]"
+							value="{{ t[item][id].name ?? class }}" id="name{{ id }}"
+							class="form-control item-name"
+							onchange="changeItemName(this);"/>
 
-          </div>
+						<div
+							class="form-text">{{ help_item_name }}</div>
 
-        </div>
+					</div>
+				</div>
+			{% endif %}
 
-      {% endif %}
+			{% if item == 'marker' %}
+				<div
+					class="accordion pt-3 pb-4">
 
-      <div class="row mb-3">
+					<div
+						class="accordion-item">
 
-        <label for="name{{ id }}"
-               class="{% if item == 'marker' %}
-                        col-sm-2 col-
-                      {% endif %}
-                      form-label">{{ entry_item_title }}</label>
+						<h2
+							class="accordion-header"
+							id="{{ name }}{{ id }}">
 
-        <div {% if item == 'marker' %}class="col-sm-10"{% endif %}>
+							<button
+								class="accordion-button"
+								type="button"
+								data-bs-toggle="collapse"
+								data-bs-target="#p_{{ name }}{{ id }}"
+								aria-expanded="false"
+								aria-controls="p_{{ name }}{{ id }}">{{ text_options }}</button>
 
-          <input type="text"
-                 name="t[{{ item }}][{{ id }}][name]"
-                 value="{{ t[item][id].name ?? class }}"
-                 id="name{{ id }}"
-                 class="form-control item-name"
-                 onchange="changeItemName(this);" />
+						</h2>
 
-          <div class="form-text">{{ help_item_name }}</div>
+						<div
+							id="p_{{ name }}{{ id }}"
+							class="accordion-collapse collapse show"
+							aria-labelledby="{{ name }}{{ id }}">
 
-        </div>
+							<div
+								class="accordion-body subclass-body">
+								{% include(ip~item~'/'~class~'.twig') %}</div>
 
-      </div>
+						</div>
 
-      <div class="accordion pt-3 pb-4">
+					</div>
 
-        <div class="accordion-item">
+				</div>
+			{% else %}
+				{% include(ip~item~'/'~class~'.twig') %}
+			{% endif %}
 
-          <h2 class="accordion-header" id="{{ name }}{{ id }}">
+			<button
+				type="button"
+				class="btn btn-outline-danger mt-4 mb-2"
+				onclick="delItem(this);">
+				<i
+					class="fa-regular fa-trash-can"></i>
 
-            <button class="accordion-button"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#p_{{ name }}{{ id }}"
-                    aria-expanded="false"
-                    aria-controls="p_{{ name }}{{ id }}">{{ text_options }}</button>
+				{% if item == 'control' %}
+					{{ text_delete_control }}
 
-          </h2>
+				{% elseif item == 'interaction' %}
+					{{ text_delete_interaction }}
 
-          <div id="p_{{ name }}{{ id }}"
-               class="accordion-collapse collapse show"
-               aria-labelledby="{{ name }}{{ id }}">
+				{% elseif item == 'layer' %}
+					{{ text_delete_layer }}
 
-            <div class="accordion-body subclass-body">{% include(ip~item~'/'~class~'.twig') %}</div>
+				{% elseif item == 'marker' %}
+					{{ text_delete_marker }}
 
-          </div>
+				{% endif %}
 
-        </div>
+			</button>
 
-      </div>
+		</div>
 
-      <button type="button" class="btn btn-outline-danger" onclick="delItem(this);">
-        <i class="fa-regular fa-trash-can"></i>
-
-        {% if item == 'control' %}
-          {{ text_delete_control }}
-
-        {% elseif item == 'interaction' %}
-          {{ text_delete_interaction }}
-
-        {% elseif item == 'layer' %}
-          {{ text_delete_layer }}
-
-        {% elseif item == 'marker' %}
-          {{ text_delete_marker }}
-
-        {% endif %}
-
-      </button>
-
-    </div>
-
-  </div>
+	</div>
 </div>

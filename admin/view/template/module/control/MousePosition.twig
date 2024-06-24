@@ -12,8 +12,7 @@
   default: true } %}
 
 {% include(option) with 
-{ name: 'target' } %}
-
-{% include(option) with 
-{ name: 'className',
-  default: 'ol-mouse-position' } %}
+{ name: 'advanced',
+  values: [
+    { name: 'target' },
+    {name: 'className', default: 'ol-mouse-position'} ] } %}

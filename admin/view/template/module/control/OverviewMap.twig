@@ -13,8 +13,7 @@
   'type': 'boolean' } %}
 
 {% include(option) with 
-{ name: 'target' } %}
-
-{% include(option) with 
-{ name: 'className', 
-  default: 'ol-overviewmap' } %}
+{ name: 'advanced',
+  values: [
+    {name: 'target' },
+    {name: 'className', default: 'ol-overviewmap'} ] } %}

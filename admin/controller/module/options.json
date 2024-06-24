@@ -11,22 +11,20 @@
             },
             "advanced": {
                 "target": {
+                    "type": "boolean",
+                    "default": null
+                },
+                "className": {
+                    "type": "string",
+                    "default": "ol-attribution"
+                },
+                "expandClassName": {
                     "type": "string",
                     "default": null
                 },
-                "classNames": {
-                    "className": {
-                        "type": "string",
-                        "default": "ol-attribution"
-                    },
-                    "expandClassName": {
-                        "type": "string",
-                        "default": null
-                    },
-                    "collapseClassName": {
-                        "type": "string",
-                        "default": null
-                    }
+                "collapseClassName": {
+                    "type": "string",
+                    "default": null
                 }
             }
         },

@@ -4,14 +4,10 @@
   default: false } %}
 
 {% include(option) with 
-{ name: 'target' } %}
-
-{% include(option) with 
-{ name: 'source' } %}
-
-{% include(option) with 
-{ name: 'classNames',
+{ name: 'advanced',
   values: [
+    { name: 'source' },
+    { name: 'target' },
     {name: 'className', default: 'ol-full-screen'},
     {name: 'activeClassName'},
     {name: 'inactiveClassName'} ] } %}

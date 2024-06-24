@@ -3,6 +3,7 @@
 namespace Opencart\Admin\Controller\Extension\Maps\Module;
 
 class Maps extends \Opencart\System\Engine\Controller
+
 {
     private $path = 'extension/maps/module/maps';
     private $default_marker = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPCEtLSBDcmVhdGVkIHdpdGggSW5rc2NhcGUgKGh0dHA6Ly93d3cuaW5rc2NhcGUub3JnLykgLS0+Cjxzdmcgd2lkdGg9IjcuMTgxM21tIiBoZWlnaHQ9IjEwLjU4M21tIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA3LjE4MTMgMTAuNTgzIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTg1Ljg3MiAtMTQzLjAxKSI+CiAgPHBhdGggZD0ibTg5LjQ2MyAxNDMuMTFjLTEuOTMwNyAwLTMuNDg5NiAxLjU2MDUtMy40ODk2IDMuNDg1MyAwIDAuNjA1MjMgMC4xNTQ2NSAxLjE3NDcgMC40MjU3NiAxLjY3MDhsMy4wNjQgNS4xMjk1IDMuMDY0LTUuMTI5NWMwLjI3MTEtMC40OTYxNiAwLjQyNTc2LTEuMDY1NiAwLjQyNTc2LTEuNjcwOCAwLTEuOTI0OS0xLjU1ODktMy40ODUzLTMuNDg5Ni0zLjQ4NTN6bS0wLjAzODgxIDIuMDI1NWMwLjAxMjk1LTIuNmUtNCAwLjAyNTc4IDAgMC4wMzg4MSAwIDAuODM0MDIgMCAxLjUxMDEgMC42NzYxIDEuNTEwMSAxLjUxMDFzLTAuNjc2MTEgMS41MTAxLTEuNTEwMSAxLjUxMDFjLTAuODM0MDIgMC0xLjUxMDEtMC42NzYxMS0xLjUxMDEtMS41MTAxIDAtMC44MjA5OCAwLjY1NTMtMS40ODk0IDEuNDcxMy0xLjUxMDF6IiBmaWxsPSIjZTUyNjI2IiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iLjIwMTc4Ii8+CiA8L2c+Cjwvc3ZnPgo=";
@@ -16,26 +17,25 @@ class Maps extends \Opencart\System\Engine\Controller
 
         $data['breadcrumbs'][] = [
             'text' => $this->language->get('text_home'),
-            'href' => $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'])
+            'href' => $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token']),
         ];
 
         $data['breadcrumbs'][] = [
             'text' => $this->language->get('text_extension'),
-            'href' => $this->url->link('marketplace/extension', 'user_token=' . $this->session->data['user_token'] . '&type=module')
+            'href' => $this->url->link('marketplace/extension', 'user_token=' . $this->session->data['user_token'] . '&type=module'),
         ];
 
         if (!isset($this->request->get['module_id'])) {
             $data['breadcrumbs'][] = [
                 'text' => $this->language->get('heading_title'),
-                'href' => $this->url->link($this->path, 'user_token=' . $this->session->data['user_token'])
+                'href' => $this->url->link($this->path, 'user_token=' . $this->session->data['user_token']),
             ];
         } else {
             $data['breadcrumbs'][] = [
                 'text' => $this->language->get('heading_title'),
-                'href' => $this->url->link($this->path, 'user_token=' . $this->session->data['user_token'] . '&module_id=' . $this->request->get['module_id'])
+                'href' => $this->url->link($this->path, 'user_token=' . $this->session->data['user_token'] . '&module_id=' . $this->request->get['module_id']),
             ];
         }
-        // </editor-fold>
 
         if (!isset($this->request->get['module_id'])) {
             $data['save'] = $this->url->link($this->path . '.save', 'user_token=' . $this->session->data['user_token']);
@@ -50,7 +50,6 @@ class Maps extends \Opencart\System\Engine\Controller
 
             $module_info = $this->model_setting_module->getModule($this->request->get['module_id']);
         }
-        // </editor-fold>
 
         $data['config_file_max_size'] = ((int) preg_filter('/[^0-9]/', '', ini_get('upload_max_filesize')) * 1024 * 1024);
 
@@ -80,23 +79,23 @@ class Maps extends \Opencart\System\Engine\Controller
             $data['m']['marker'][uniqid()]['class'] = 'Marker';
         }
 
-        $data['classes']['control'] = $this->getItemClasses('control');
+        $data['classes']['control'] = $this->getTemplates('control');
+        //$data['classes']['control'] = $this->getItemClasses('control');
         $data['classes']['interaction'] = $this->getItemClasses('interaction');
         $data['classes']['layer'] = $this->getItemClasses('layer');
         $data['classes']['source'] = $this->getItemClasses('source');
 
         foreach ($data['classes'] as $items) {
             foreach ($items as $class) {
-                $data['classes_help'][$class] = $this->language->get('help_' . $class);
+                //       $data['classes_help'][$class] = $this->language->get('help_' . $class);
             }
         }
-        $data['classes_help'] = json_encode($data['classes_help']);
+        //$data['classes_help'] = json_encode($data['classes_help']);
 
         $data['default_marker'] = $this->default_marker;
 
         $data['ip'] = 'extension/maps/admin/view/template/module/';
         $data['option'] = $data['ip'] . 'option.twig';
-        $data['advanced'] = $data['ip'] . 'advanced_option.twig';
 
         $data['options'] = json_decode(
             file_get_contents(__DIR__ . '/options.json'),
@@ -193,7 +192,6 @@ class Maps extends \Opencart\System\Engine\Controller
 
     public function addItem(): void
     {
-
         $data['id'] = uniqid();
         $data['class'] = filter_input(INPUT_GET, 'class');
 
@@ -230,8 +228,8 @@ class Maps extends \Opencart\System\Engine\Controller
         $this->load->language($this->path);
         $this->response->setOutput($this->load->view(
             'extension/maps/module/'
-                        . $data['item']
-                        . '/' . $data['class'],
+            . $data['item']
+            . '/' . $data['class'],
             $data
         ));
     }
@@ -240,14 +238,64 @@ class Maps extends \Opencart\System\Engine\Controller
     {
 
         $classes = glob(DIR_EXTENSION
-                . 'maps/admin/view/template/module/' . $item
-                . '/*.twig');
+            . 'maps/admin/view/template/module/' . $item
+            . '/*.twig');
 
         array_walk($classes, function (&$value) {
             $value = pathinfo($value, PATHINFO_FILENAME);
         });
 
         return $classes;
+    }
+
+    private function getTemplates($item)
+    {
+        $classes = glob(DIR_EXTENSION
+            . 'maps/admin/view/template/module/' . $item
+            . '/*.twig');
+
+        array_walk($classes, function (&$value) {
+            $value = pathinfo($value, PATHINFO_FILENAME);
+        });
+
+        $this->load->language($this->path);
+
+        foreach ($classes as $c) {
+            $templates[$c]['help'] = $this->language->get('help_' . $c);
+            $templates[$c]['template'] = $this->getTemplate($c);
+        }
+
+        return $templates;
+    }
+
+    private function getTemplate($class)
+    {
+        $data['id'] = uniqid();
+        $data['class'] = $class;
+
+        if ($data['class'] == 'Marker') {
+            $data['default_marker'] = $this->default_marker;
+            $data['config_file_max_size'] = ((int) preg_filter('/[^0-9]/', '', ini_get('upload_max_filesize')) * 1024 * 1024);
+        }
+
+        $data['item'] = $this->getItem($data['class']);
+
+        $data['classes'][$data['item']] = $this->getItemClasses($data['item']);
+
+        $data['ip'] = 'extension/maps/admin/view/template/module/';
+        $data['option'] = $data['ip'] . 'option.twig';
+        $data['options'] = json_decode(
+            file_get_contents(__DIR__ . '/options.json'),
+            true
+        );
+
+        $data['help'] = $this->language->get('help_' . $class);
+
+        $this->load->language($this->path);
+        return $this->load->view(
+            'extension/maps/module/item',
+            $data
+        );
     }
 
     private function getItem($class)
@@ -257,10 +305,9 @@ class Maps extends \Opencart\System\Engine\Controller
             return 'marker';
         }
 
-
         $classes = glob(DIR_EXTENSION
-                . 'maps/admin/view/template/module/control/'
-                . '*.twig');
+            . 'maps/admin/view/template/module/control/'
+            . '*.twig');
 
         array_walk($classes, function (&$value) {
             $value = pathinfo($value, PATHINFO_FILENAME);
@@ -271,8 +318,8 @@ class Maps extends \Opencart\System\Engine\Controller
         }
 
         $classes = glob(DIR_EXTENSION
-                . 'maps/admin/view/template/module/interaction/'
-                . '*.twig');
+            . 'maps/admin/view/template/module/interaction/'
+            . '*.twig');
 
         array_walk($classes, function (&$value) {
             $value = pathinfo($value, PATHINFO_FILENAME);
@@ -283,8 +330,8 @@ class Maps extends \Opencart\System\Engine\Controller
         }
 
         $classes = glob(DIR_EXTENSION
-                . 'maps/admin/view/template/module/layer/'
-                . '*.twig');
+            . 'maps/admin/view/template/module/layer/'
+            . '*.twig');
 
         array_walk($classes, function (&$value) {
             $value = pathinfo($value, PATHINFO_FILENAME);
@@ -309,7 +356,7 @@ class Maps extends \Opencart\System\Engine\Controller
         $this->load->language($this->path);
         $this->response->setOutput($this->load->view(
             'extension/maps/module/source/'
-                        . $data['class'],
+            . $data['class'],
             $data
         ));
     }
